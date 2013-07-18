@@ -24,7 +24,7 @@ class Retriever
         @clientProcessor.get url, (err, res, body) =>
             if err
                 if res.statusCode is 401
-                    console.log "Authentification errror..."
+                    console.log "Authentification error..."
 
                 msg = "Couldn't get the data of [#{partner}] " + \
                       "from the Data Processor."
