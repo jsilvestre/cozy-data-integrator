@@ -8,14 +8,17 @@ Notifications = new NotificationHelper('data-integrator')
 
 todos =
     privowny_registered:
+        parent: null
         text: "N'oubliez pas de vous inscrire sur Privowny !"
         resource:
             app: "privowny"
     privowny_oauth_registered:
+        parent: 'privowny_registered'
         text: "N'oubliez pas de lier votre Cozy avec votre compte Privowny !"
         resource:
             app: "privowny"
     google_oauth_registered:
+        parent: 'privowny_oauth_registered'
         text: "N'oubliez pas de lier votre Cozy avec votre compte Google !"
         resource:
             app: "data-integrator"
@@ -24,20 +27,26 @@ todos =
 checkNotification = (statuses) ->
     console.log "Updating notifications..."
     for status, isOkay of statuses
-        notifID = "mesinfos-status-#{status}"
-        if isOkay
-            Notifications.destroy notifID
-        else
-            Notifications.createOrUpdatePersistent notifID,
-                text: todos[status].text
-                resource: todos[status].resource,
-                (err, res, body) ->
-                    if err?
-                        console.log "Error while updating notifications", err
+
+        info = todos[status]
+        if info?
+            notifID = "mesinfos-status-#{status}"
+            if isOkay
+                Notifications.destroy notifID, (err, res, body) ->
+                    console.log "Destroy Notif: #{err}" if err?
+            else if (info.parent isnt null and statuses[info.parent]) \
+                    or info.parent is null
+                Notifications.createOrUpdatePersistent notifID,
+                    text: todos[status].text
+                    resource: todos[status].resource,
+                    (err, res, body) ->
+                        if err?
+                            console.log "Error while updating notifications", err
+
 # helper to check the statuses x notification state
 checkStatuses = -> MesInfosIntegrator.getConfig (err, midi) ->
     if err?
-        console.log err
+        console.log "CheckStatuses: #{err}"
     else
         checkNotification midi.registration_status
 
