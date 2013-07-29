@@ -53,7 +53,7 @@ class Retriever
         url = "token/#{@token}/status/"
         @clientProcessor.post url, statuses, (err, res, body) ->
             if err?
-                console.log err
+                console.log "Send statuses: #{err}"
             else
                 console.log "#{res.statusCode} - #{body}"
 
