@@ -19,7 +19,8 @@ todos =
             app: "privowny"
     google_oauth_registered:
         parent: 'privowny_oauth_registered'
-        text: "N'oubliez pas de lier votre Cozy avec votre compte Google !"
+        text: "Importez vos contacts, agendas et photos depuis votre " +\
+              "compte Google ou indiquez que vous n'en avez pas !"
         resource:
             app: "data-integrator"
 
