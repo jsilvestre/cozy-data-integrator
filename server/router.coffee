@@ -6,5 +6,6 @@ module.exports = (app) ->
     app.get '/public/set-token/:token/?', token.set
     app.get '/public/ping/:partner/?', integrator.ping
 
+    app.get '/', integrator.main
     app.get '/oauth/', integrator.oauth
     app.get '/oauth/callback/?', integrator.oauthCallback

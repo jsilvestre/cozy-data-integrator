@@ -30,7 +30,3 @@ module.exports = (app) ->
             dumpExceptions: true
             showStack: true
         app.set "processor_url", "http://localhost:9261/"
-
-    # static middleware
-    app.use express.static __dirname + '/../client/public',
-        maxAge: 86400000
