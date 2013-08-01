@@ -1,0 +1,42 @@
+doctype 5
+html(lang="fr")
+  head
+    meta(charset="utf-8")
+    title Mes Infos - Intégrateur de données
+    link(rel="stylesheet", href="styles/normalize.css")
+    link(rel="stylesheet", href="styles/bootstrap.css")
+    link(rel="stylesheet", href="styles/app.css")
+
+  body
+    .container
+
+      h1.text-center Intégrateur de données MesInfos
+
+      #description.panel.panel-info
+        .panel-heading
+          h3.panel-title A quoi ça sert ?
+        span.
+          Dans le cadre du projet MesInfos, vous recevez des données d'entreprises dont vous êtes client.
+          <br />L'intégrateur de données MesInfos, c'est l'application qui vous permet d'intégrer ces données de façon transparente à votre Cozy.
+          <br />A ce titre, nous vous conseillons de ne jamais l'arrêter !
+
+      table.table.table-striped
+        thead
+          tr
+            th.text-center Source de données
+            th.text-center Date de dernière mise à jour
+        tbody
+          tr
+            td.text-center Google
+              td.text-center
+                a(href="oauth/") Activer l'import des mes contacts, agendas et photos Google
+                - if(!isGoogleMarkedAsRegistered) {
+                  |&nbsp;-&nbsp;
+                  a(href="disable-google-notification") Je ne possède pas de compte Google
+                - }
+
+          - for(partner in statuses) {
+            tr
+              td.text-center.partner= statuses[partner].label
+              td.text-center= statuses[partner].date + ' à ' + statuses[partner].time
+          - }

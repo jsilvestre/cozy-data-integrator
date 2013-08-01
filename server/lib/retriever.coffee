@@ -1,5 +1,6 @@
 Client = require('request-json').JsonClient
 async = require 'async'
+MesInfosIntegrator = require '../models/mesinfosintegrator'
 
 class Retriever
 
@@ -30,7 +31,18 @@ class Retriever
                       "from the Data Processor."
                 console.log msg
             else
-                @putToDataSystem body
+                # we update the "last update" date for the partner
+                MesInfosIntegrator.getConfig (err, midi) =>
+                    if err?
+                        console.log "Retriever:getData > #{err}"
+                    else
+                        statuses = midi.data_integrator_status
+                        statuses[partner] = {} unless statuses[partner]?
+                        statuses[partner] = new Date()
+                        newValue = data_integrator_status: statuses
+                        midi.updateAttributes newValue, (err) =>
+                            # let's add the new data to the data system
+                            @putToDataSystem body
 
     putToDataSystem: (documentList) ->
         prepareRequests = []

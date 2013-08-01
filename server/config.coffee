@@ -3,13 +3,20 @@ module.exports = (app) ->
     shortcuts = require './helpers/shortcut'
     express   = require 'express'
 
-    # all environements
-    app.use express.bodyParser
-        # uploadDir: './uploads'
-        keepExtensions: true
+    # all environments
+    app.configure ->
+        app.set 'views', __dirname + '/../client'
+        app.engine '.html', require('jade').__express
 
-    # extend express to DRY controllers
-    app.use shortcuts
+        app.use express.bodyParser
+            keepExtensions: true
+
+        # extend express to DRY controllers
+        app.use shortcuts
+
+        # static middleware
+        app.use express.static __dirname + '/../client/public',
+            maxAge: 86400000
 
     #test environement
     app.configure 'test', ->

@@ -12,7 +12,7 @@ module.exports = MesInfosIntegrator = db.define 'MesInfosIntegrator',
         default: false
     data_integrator_status:
         type: Object
-        default: null
+        default: {}
 
 MesInfosIntegrator.getConfig = (callback) ->
     MesInfosIntegrator.request 'all', (err, midi) ->

@@ -9,3 +9,4 @@ module.exports = (app) ->
     app.get '/', integrator.main
     app.get '/oauth/', integrator.oauth
     app.get '/oauth/callback/?', integrator.oauthCallback
+    app.get '/disable-google-notification/?', integrator.disableGoogleNotification

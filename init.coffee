@@ -27,7 +27,7 @@ module.exports = init = (callback) ->
                                 console.log "Config created."
                                 callback err
                         else
-                        callback err
+                            callback err
 
     # Create request and the document if not existing
     prepareRequests.push (callback) ->
