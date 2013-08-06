@@ -34,9 +34,10 @@ checkNotification = (statuses) ->
             notifID = "mesinfos-status-#{status}"
             if isOkay
                 Notifications.destroy notifID, (err, res, body) ->
-                    console.log "Destroy Notif: #{err}" if err?
+                    console.log "Destroy Notif: #{err} (does not exist)" if err?
             else if (info.parent isnt null and statuses[info.parent]) \
                     or info.parent is null
+                console.log "Create notif: #{status}"
                 Notifications.createOrUpdatePersistent notifID,
                     text: todos[status].text
                     resource: todos[status].resource,
