@@ -1,17 +1,6 @@
 
 MesInfosIntegrator = require '../models/mesinfosintegrator'
 MesInfosStatuses = require '../models/mesinfosstatuses'
-OAuth = require('mashape-oauth').OAuth
-
-oauthTemp = {}
-oa = new OAuth
-            requestUrl: "https://www.google.com/accounts/OAuthGetRequestToken?scope=https%3A%2F%2Fwww.google.com%2Fcalendar%2Ffeeds%2F+https%3A%2F%2Fwww.google.com%2Fm8%2Ffeeds%2F+https%3A%2F%2Fpicasaweb.google.com%2Fdata%2F"
-            accessUrl: "https://www.google.com/accounts/OAuthGetAccessToken"
-            callback: "http://localhost:9260/oauth/callback"
-            consumerKey: "anonymous"
-            consumerSecret: "anonymous"
-            version: "1.0"
-            signatureMethod: "HMAC-SHA1"
 
 module.exports = (app) ->
 
@@ -74,9 +63,10 @@ module.exports = (app) ->
                         date: dateFormat(value, "dd/mm/yyyy")
                         time: dateFormat(value, "HH:MM")
 
+                rs = midi.registration_status
                 # render template with calculated data
                 opts =
-                    isGoogleMarkedAsRegistered: midi.registration_status.google_oauth_registered
+                    isGoogleMarkedAsRegistered: rs.google_oauth_registered
                     statuses: displayStatuses
                 res.render 'index.jade', opts, (err, html) ->
                     res.send 200, html
