@@ -43,7 +43,8 @@ checkNotification = (statuses) ->
                     resource: todos[status].resource,
                     (err, res, body) ->
                         if err?
-                            console.log "Error while updating notifications", err
+                            errorMsg = "Error while updating notifications"
+                            console.log errorMsg, err
 
 # helper to check the statuses x notification state
 checkStatuses = -> MesInfosIntegrator.getConfig (err, midi) ->
