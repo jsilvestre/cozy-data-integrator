@@ -1,7 +1,7 @@
 {
   "name": "cozy-data-integrator",
   "version": "0.0.1",
-  "description": "DataIntegrator for the MesInfos Project",
+  "description": "Le collecteur de données pour le projet MesInfos vous permet de récupérer automatiquement vos données détenues par les entreprises.",
   "main": "server.coffee",
   "dependencies": {
     "jugglingdb": "~0.2.0-25",
@@ -29,5 +29,16 @@
   },
   "repository": "https://github.com/mycozycloud/cozy-data-integrator",
   "author": "Cozycloud",
-  "readmeFilename": "README.md"
+  "readmeFilename": "README.md",
+  "cozy-permissions" :{
+    "mesinfosintegrator": {
+      "description": "Permet de stocker des éléments de configuration interne à l'application comme les dates de dernières mises à jour."
+    },
+    "mesinfosstatuses": {
+      "description": "Afin de vous rappeler certaines action à entreprendre, des statuts sont stockés."
+    },
+    "user": {
+      "description": "Afin de vous rappeler certaines action, l'application doit savoir si vous vous êtes ou non inscrit sur votre Cozy."
+    }
+  }
 }
