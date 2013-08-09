@@ -1,19 +1,6 @@
 # Description
 
-A cozy app to manage your contacts.
-
-[![Build
-Status](https://travis-ci.org/mycozycloud/cozy-contacts.png?branch=master)](https://travis-ci.org/mycozycloud/cozy-contacts)
-
-# Run
-
-Clone this repository, install dependencies and run server.
-
-    git clone https://github.com/mycozycloud/cozy-contacts.git
-    cd cozy-contacts
-    npm install
-    cd client/ && npm install && cd ..
-    coffee server
+Data integrator for the MesInfos project.
 
 # About Cozy
 
