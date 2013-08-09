@@ -1,5 +1,5 @@
 {
-  "name": "cozy-data-integrator",
+  "name": "Collecteur de données MesInfos",
   "version": "0.0.1",
   "description": "Le collecteur de données pour le projet MesInfos vous permet de récupérer automatiquement vos données détenues par les entreprises.",
   "main": "server.coffee",
@@ -27,7 +27,7 @@
     "test": "mocha server/_specs/ --reporter spec --compilers coffee:coffee-script --colors",
     "start": "coffee server.coffee"
   },
-  "repository": "https://github.com/mycozycloud/cozy-data-integrator",
+  "repository": "https://github.com/jsilvestre/cozy-data-integrator",
   "author": "Cozycloud",
   "readmeFilename": "README.md",
   "cozy-permissions" :{
