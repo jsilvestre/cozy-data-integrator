@@ -64,7 +64,7 @@ module.exports = initRealtime = (app, server) ->
     setInterval checkStatuses, 1000 * 60 * 60 # 1h
 
     # Detect the COZY status
-    realtime.on 'user.update', (event, id) ->
+    realtime.on 'user.*', (event, id) ->
         console.log "#{event} > #{id}"
         User.find id, (err, user) ->
             console.log "An error occurrend during user retrieval" if err?
