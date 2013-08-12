@@ -1,5 +1,5 @@
 {
-  "name": "Collecteur-Donnees",
+  "name": "collecteur-donnees",
   "version": "0.0.1",
   "description": "Le collecteur de données pour le projet MesInfos vous permet de récupérer automatiquement vos données détenues par les entreprises.",
   "main": "server.coffee",
@@ -29,6 +29,7 @@
   },
   "author": "Cozycloud",
   "readmeFilename": "README.md",
+  "cozy-displayName": "Collecteur de données",
   "cozy-permissions" :{
     "mesinfosintegrator": {
       "description": "Permet de stocker des éléments de configuration interne à l'application comme les dates de dernières mises à jour."
