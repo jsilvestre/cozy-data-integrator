@@ -1,5 +1,5 @@
 {
-  "name": "Collecteur de données MesInfos",
+  "name": "Collecteur-Donnees",
   "version": "0.0.1",
   "description": "Le collecteur de données pour le projet MesInfos vous permet de récupérer automatiquement vos données détenues par les entreprises.",
   "main": "server.coffee",
