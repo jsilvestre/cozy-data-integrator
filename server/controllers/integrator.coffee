@@ -47,7 +47,6 @@ module.exports = (app) ->
                 console.log "main route > #{err}"
             else
                 statuses = midi.data_integrator_status
-                console.log statuses
                 displayStatuses = {}
                 for slug, value of statuses
 
