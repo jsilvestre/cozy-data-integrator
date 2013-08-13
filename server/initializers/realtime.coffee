@@ -22,7 +22,7 @@ todos =
         text: "Importez vos contacts, agendas et photos depuis votre " +\
               "compte Google ou indiquez que vous n'en avez pas !"
         resource:
-            app: "data-integrator"
+            app: "collecteur-mesinfos"
 
 # helper to check statuses x notification state
 checkNotification = (statuses) ->
