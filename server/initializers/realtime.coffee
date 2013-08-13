@@ -70,7 +70,7 @@ module.exports = initRealtime = (app, server) ->
             console.log "An error occurrend during user retrieval" if err?
             MesInfosStatuses.getStatuses (err, mis) ->
                 if err?
-                    console.log err
+                    console.log "RealtimeAdapter > #{err}"
                 else
                     attr = cozy_registered: user.activated
                     mis.updateAttributes attr, (err, mis) ->

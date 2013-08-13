@@ -21,7 +21,7 @@ MesInfosIntegrator.getConfig = (callback) ->
         cb = callback
         MesInfosStatuses.getStatuses (err, mis) ->
             if err?
-                console.log "Can't get statuses"
+                console.log "MIIntegratorModel > Can't get statuses"
                 cb(err, null)
             else
                 midi.registration_status = {}
