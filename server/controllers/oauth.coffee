@@ -1,31 +1,36 @@
 OAuth = require('mashape-oauth').OAuth
-
+CozyInstance = require '../models/cozyinstance'
 oauthTemp = {}
-oa = new OAuth
-            requestUrl: "https://www.google.com/accounts/OAuthGetRequestToken?scope=https%3A%2F%2Fwww.google.com%2Fcalendar%2Ffeeds%2F+https%3A%2F%2Fwww.google.com%2Fm8%2Ffeeds%2F+https%3A%2F%2Fpicasaweb.google.com%2Fdata%2F"
-            accessUrl: "https://www.google.com/accounts/OAuthGetAccessToken"
-            callback: "http://localhost:9260/oauth/callback"
-            consumerKey: "anonymous"
-            consumerSecret: "anonymous"
-            version: "1.0"
-            signatureMethod: "HMAC-SHA1"
+oa = null
 
 module.exports = (app) ->
 
     initiate: (req, res) ->
 
-        oa.getOAuthRequestToken (error, oauth_token, oauth_token_secret, results) ->
-            if error?
-                res.error 500, error
-            else
-                console.log "GOT TOKEN: #{oauth_token} / #{oauth_token_secret}"
-                oauthTemp =
-                    token: oauth_token
-                    secret: oauth_token_secret
-                host = "https://www.google.com/"
-                url = "accounts/OAuthAuthorizeToken"
-                params = "?oauth_token=#{oauth_token}&hd=default&hl=fr"
-                res.redirect "#{host}#{url}#{params}"
+        CozyInstance.getInstance (err, ci) ->
+
+            oa = new OAuth
+                requestUrl: "https://www.google.com/accounts/OAuthGetRequestToken?scope=https%3A%2F%2Fwww.google.com%2Fcalendar%2Ffeeds%2F+https%3A%2F%2Fwww.google.com%2Fm8%2Ffeeds%2F+https%3A%2F%2Fpicasaweb.google.com%2Fdata%2F"
+                accessUrl: "https://www.google.com/accounts/OAuthGetAccessToken"
+                #callback: "http://localhost:9260/oauth/callback"
+                callback: "http://#{ci.domain}/apps/collecteur-mesinfos/oauth/callback"
+                consumerKey: "anonymous"
+                consumerSecret: "anonymous"
+                version: "1.0"
+                signatureMethod: "HMAC-SHA1"
+
+            oa.getOAuthRequestToken (error, oauth_token, oauth_token_secret, results) ->
+                if error?
+                    res.error 500, error
+                else
+                    console.log "GOT TOKEN: #{oauth_token} / #{oauth_token_secret}"
+                    oauthTemp =
+                        token: oauth_token
+                        secret: oauth_token_secret
+                    host = "https://www.google.com/"
+                    url = "accounts/OAuthAuthorizeToken"
+                    params = "?oauth_token=#{oauth_token}&hd=default&hl=fr"
+                    res.redirect "#{host}#{url}#{params}"
 
     callback: (req, res) ->
         options =

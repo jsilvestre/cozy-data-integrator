@@ -2,6 +2,7 @@ async = require "async"
 
 MesInfosIntegrator = require './server/models/mesinfosintegrator'
 MesInfosStatuses = require './server/models/mesinfosstatuses'
+CozyInstance = require './server/models/cozyinstance'
 
 # Create all requests
 module.exports = init = (callback) ->
@@ -48,8 +49,13 @@ module.exports = init = (callback) ->
                         else
                             callback err
 
+    # Create request and the document if not existing
+    prepareRequests.push (callback) ->
+        CozyInstance.defineRequest 'all', all, (err) ->
+            callback err
+
     async.series prepareRequests, (err, results) ->
-        callback(err)
+        callback err
 
 # so we can do "coffee init"
 if not module.parent
