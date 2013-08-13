@@ -8,6 +8,25 @@ module.exports = init = (callback) ->
     all = (doc) -> emit doc._id, doc
 
     prepareRequests = []
+    # Create request and the document if not existing
+    prepareRequests.push (callback) ->
+        MesInfosStatuses.defineRequest 'all', all, (err) ->
+            if err
+                callback err
+            else
+                MesInfosStatuses.getStatuses (err, mis) ->
+                    if err?
+                        msg = "Internal error occurred, can't load the status"
+                        console.log msg
+                        callback err
+                    else
+                        if mis.length is 0
+                            console.log "No existing document, creating..."
+                            MesInfosStatuses.create {}, (err, mis) ->
+                                console.log "Statuses intialized."
+                                callback err
+                        else
+                            callback err
 
     # Create request and the document if not existing
     prepareRequests.push (callback) ->
@@ -29,25 +48,6 @@ module.exports = init = (callback) ->
                         else
                             callback err
 
-    # Create request and the document if not existing
-    prepareRequests.push (callback) ->
-        MesInfosStatuses.defineRequest 'all', all, (err) ->
-            if err
-                callback err
-            else
-                MesInfosStatuses.getStatuses (err, mis) ->
-                    if err?
-                        msg = "Internal error occurred, can't load the status"
-                        console.log msg
-                        callback err
-                    else
-                        if mis.length is 0
-                            console.log "No existing document, creating..."
-                            MesInfosStatuses.create {}, (err, mis) ->
-                                console.log "Statuses intialized."
-                                callback err
-                        else
-                            callback err
     async.series prepareRequests, (err, results) ->
         callback(err)
 
