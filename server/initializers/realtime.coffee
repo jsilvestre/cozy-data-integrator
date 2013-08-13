@@ -55,7 +55,7 @@ checkStatuses = -> MesInfosIntegrator.getConfig (err, midi) ->
 
 module.exports = initRealtime = (app, server) ->
 
-    watchedEvents = ['user.update', 'mesinfosstatuses.update']
+    watchedEvents = ['user.*', 'mesinfosstatuses.update']
     realtime = initializer server: server, watchedEvents
 
     # Adds the notification the first time
