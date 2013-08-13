@@ -27,6 +27,10 @@
     "test": "mocha server/_specs/ --reporter spec --compilers coffee:coffee-script --colors",
     "start": "coffee server.coffee"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jsilvestre/cozy-data-integrator.git"
+  },
   "author": "Cozycloud",
   "readmeFilename": "README.md",
   "cozy-displayName": "Collecteur de données",
