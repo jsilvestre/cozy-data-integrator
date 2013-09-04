@@ -10,7 +10,7 @@
     "async": "~0.2.9",
     "cozy-realtime-adapter": "~0.11.0",
     "cozy-notifications-helper": "0.0.2",
-    "request-json": "=0.3.0",
+    "request-json": "~0.3.0",
     "oauth": "~0.9.10",
     "jade": "~0.34.1",
     "dateformat": "~1.0.6-1.2.3",
@@ -34,7 +34,7 @@
   "author": "Cozycloud",
   "readmeFilename": "README.md",
   "cozy-displayName": "Collecteur de données",
-  "cozy-permissions" :{
+  "cozy-permissions": {
     "mesinfosintegrator": {
       "description": "Permet de stocker des éléments de configuration interne à l'application comme les dates de dernières mises à jour."
     },
