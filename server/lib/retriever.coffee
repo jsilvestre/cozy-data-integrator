@@ -20,7 +20,7 @@ class Retriever
         else
             console.log "Retriever already initialized."
 
-    getData: (partner) ->
+    getData: (partner, controllerCallback) ->
         url = "token/#{@token}/data/#{partner}"
         @clientProcessor.get url, (err, res, body) =>
             if err
@@ -42,22 +42,68 @@ class Retriever
                         newValue = data_integrator_status: statuses
                         midi.updateAttributes newValue, (err) =>
                             # let's add the new data to the data system
-                            @putToDataSystem body
+                            @putToDataSystem body, controllerCallback
 
-    putToDataSystem: (documentList) ->
+    putToDataSystem: (documentList, controllerCallback) ->
         prepareRequests = []
-        for doc in documentList
-            prepareRequests.push (callback) =>
-                @clientDataSystem.post 'data/', doc, (err, res, body) ->
+
+        pushFactory = (clientDS, document) -> (callback) =>
+            data = document.doc
+            if document.action is "update" and document.pkField?
+
+                # The url to create the request
+                allRequestURL = "request/#{data.docType}/by#{document.pkField}/"
+
+                # we define the request textually to allow the parameters to be interpreted
+                allRequest =
+                    map: """
+                        function (doc) {
+                            if (doc.docType === "#{data.docType}") {
+                                return emit(doc.#{document.pkField}, doc);
+                            }
+                        }
+                    """
+                console.log "Create request by#{document.pkField} for doctype #{data.docType} to make sure it exists..."
+                clientDS.put allRequestURL, allRequest, (err, res, body) =>
+
+                    # request a specific document among the doctype's documents
+                    requestedKey = {}
+                    requestedKey[document.pkField] = {}
+                    requestedKey[document.pkField] = data[document.pkField]
+                    #console.log requestedKey
+                    # Now we request the request to see if the document already exists
+                    clientDS.post allRequestURL, {key: data[document.pkField]}, (err, res, body) ->
+                        console.log "[error][#{res.statusCode}] #{err}" if err?
+                        if body? and body.length > 0 # update the existing doc
+                            url = "data/#{body[0].id}/"
+                            clientDS.put url, data, (updateErr, updateRes, updateBody) ->
+                                if updateErr?
+                                    callback "#{updateRes.statusCode} - #{updateErr}", null
+                                else
+                                    callback null, body[0].id
+                        else # create a new doc
+                            clientDS.post 'data/', data, (err, res, body) ->
+                                if err?
+                                    callback "#{res.statusCode} - #{err}", null
+                                else
+                                    callback null, body._id
+
+            else # it is just a create action
+                clientDS.post 'data/', data, (err, res, body) ->
                     if err?
-                        callback("#{res.statusCode} - #{err}", null)
+                        callback "#{res.statusCode} - #{err}", null
                     else
-                        callback(null, body._id)
+                        callback null, body._id
+
+        for document in documentList
+            prepareRequests.push pushFactory @clientDataSystem, document
+
         console.log "Requesting the processor the new data to add..."
         async.parallel prepareRequests, (err, results) ->
-            console.log "Documents added to the data system."
+            console.log "Documents added or updated to the data system."
             console.log err if err?
             console.log results if results.length? and results.length > 0
+            controllerCallback err
 
 
     sendStatus: (statuses) ->

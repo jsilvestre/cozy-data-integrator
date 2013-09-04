@@ -17,9 +17,11 @@ module.exports = (app) ->
                     # execute the HTTP request to processor
                     retriever = require('../lib/retriever.coffee')
                     retriever.init app.get('processor_url'), midi.password
-                    retriever.getData req.params.partner
-
-                    res.send 204, "Ping successful"
+                    retriever.getData req.params.partner, (err) ->
+                        if err?
+                            res.send 500, "Error while retrieving data. #{err}"
+                        else
+                            res.send 200, "Ping successful, Data retrieved successfully."
             else
                 # 409 Conflict
                 res.send 409, 'The data integrator is already updating.'
