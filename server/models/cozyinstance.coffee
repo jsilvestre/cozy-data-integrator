@@ -1,6 +1,7 @@
 db = require '../db/cozy-adapter'
 
 module.exports = CozyInstance = db.define 'CozyInstance',
+    id: String
     domain: String
     locale: String
     helpUrl: String

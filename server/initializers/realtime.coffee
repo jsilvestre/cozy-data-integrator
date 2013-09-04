@@ -2,6 +2,7 @@ initializer = require('cozy-realtime-adapter')
 User = require '../models/user'
 MesInfosIntegrator = require '../models/mesinfosintegrator'
 MesInfosStatuses = require '../models/mesinfosstatuses'
+CozyInstance = require '../models/cozyinstance'
 
 NotificationHelper = require('cozy-notifications-helper')
 Notifications = new NotificationHelper('data-integrator')
@@ -55,7 +56,7 @@ checkStatuses = -> MesInfosIntegrator.getConfig (err, midi) ->
 
 module.exports = initRealtime = (app, server) ->
 
-    watchedEvents = ['user.*', 'mesinfosstatuses.update']
+    watchedEvents = ['user.*', 'mesinfosstatuses.update', 'cozyinstance.*']
     realtime = initializer server: server, watchedEvents
 
     # Adds the notification the first time
@@ -89,3 +90,21 @@ module.exports = initRealtime = (app, server) ->
 
                 # Also check notifications
                 checkNotification midi.registration_status
+
+    realtime.on 'cozyinstance.*', (event, id) ->
+        CozyInstance.getInstance (err, ci) ->
+
+            console.log err if err?
+
+            mesInfosHelpURL = "http://www.enov.fr/mesinfos/"
+            if ci and ci.helpUrl isnt mesInfosHelpURL
+                attr =
+                    helpUrl: mesInfosHelpURL
+                    locale: 'fr'
+                ci.updateAttributes attr, (err, ci) ->
+                    if err?
+                        console.log "realtime # An error occurred while " + \
+                                    "updating CozyInstance: #{err}"
+
+
+
