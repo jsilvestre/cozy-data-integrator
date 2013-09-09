@@ -24,12 +24,13 @@ class Retriever
         url = "token/#{@token}/data/#{partner}"
         @clientProcessor.get url, (err, res, body) =>
             if err
-                if res.statusCode is 401
+                if res?.statusCode is 401
                     console.log "Authentification error..."
 
                 msg = "Couldn't get the data of [#{partner}] " + \
                       "from the Data Processor."
                 console.log msg
+                console.log "\t#{err}"
             else
                 # we update the "last update" date for the partner
                 MesInfosIntegrator.getConfig (err, midi) =>
