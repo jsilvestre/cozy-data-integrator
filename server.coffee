@@ -1,9 +1,9 @@
 http = require 'http'
 express = require 'express'
 init = require './init'
-realtimeInitializer = require './server/initializers/realtime'
 router = require './server/router'
 configure = require './server/config'
+realtimeInitializer = require './server/initializers/realtime'
 
 module.exports = app = express()
 configure(app)
