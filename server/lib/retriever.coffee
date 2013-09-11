@@ -28,9 +28,9 @@ class Retriever
                     console.log "Authentification error..."
 
                 msg = "Couldn't get the data of [#{partner}] " + \
-                      "from the Data Processor."
+                      "from the Data Processor. -- #{err}"
                 console.log msg
-                console.log "\t#{err}"
+                controllerCallback msg
             else
                 # we update the "last update" date for the partner
                 MesInfosIntegrator.getConfig (err, midi) =>
