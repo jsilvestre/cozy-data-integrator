@@ -17,6 +17,10 @@ class Retriever
             @token = token
             @clientProcessor = new Client url
             @clientDataSystem = new Client "http://localhost:9101/"
+            if process.env.NODE_ENV is "production"
+                username = process.env.NAME
+                password = process.env.TOKEN
+                @clientDataSystem.setBasicAuth username, password
         else
             console.log "Retriever already initialized."
 
