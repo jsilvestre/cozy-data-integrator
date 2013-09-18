@@ -24,7 +24,8 @@ class Retriever
             @clientDataSystem.get 'doctypes/', (err, res, body) =>
                 console.log err if err?
                 console.log body
-                @doctypeList = body
+                for item in body
+                    @doctypeList.push item
 
         else
             console.log "Retriever already initialized."
@@ -122,11 +123,7 @@ class Retriever
                 """
             console.log "Create request all for doctype #{doctype} to make sure it exists..."
             clientDS.put allRequestURL, allRequest, (err, res, body) =>
-                if err?
-                    console.log err
-                else
-                    @doctypeList.push doctype
-
+                console.log err if err?
 
         for document in documentList
             prepareRequests.push pushFactory @clientDataSystem, document
