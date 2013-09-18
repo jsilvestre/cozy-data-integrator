@@ -52,7 +52,6 @@ class Retriever
                         newValue = data_integrator_status: statuses
                         midi.updateAttributes newValue, (err) =>
                             # let's add the new data to the data system
-                            console.log body
                             @putToDataSystem body, controllerCallback
 
     putToDataSystem: (documentList, controllerCallback) ->
@@ -118,7 +117,7 @@ class Retriever
                 map: """
                     function (doc) {
                         if (doc.docType === "#{doctype}") {
-                            return emit(doc.id, doc);
+                            return emit(doc._id, doc);
                         }
                     }
                 """
