@@ -7,20 +7,25 @@ class Retriever
     token: null
     clientProcessor: null
     clientDataSystem: null
-
-    #TODO: manage authentification to the data system
+    doctypeList: []
 
     init: (url, token) ->
-
         unless @token? or @clientProcessor? or @clientDataSystem?
             console.log "Initialize the retriever..."
             @token = token
             @clientProcessor = new Client url
             @clientDataSystem = new Client "http://localhost:9101/"
             if process.env.NODE_ENV is "production"
+                console.log "Setting basic authentification..."
                 username = process.env.NAME
                 password = process.env.TOKEN
                 @clientDataSystem.setBasicAuth username, password
+
+            @clientDataSystem.get 'doctypes/', (err, res, body) =>
+                console.log err if err?
+                console.log body
+                @doctypeList = body
+
         else
             console.log "Retriever already initialized."
 
@@ -47,6 +52,7 @@ class Retriever
                         newValue = data_integrator_status: statuses
                         midi.updateAttributes newValue, (err) =>
                             # let's add the new data to the data system
+                            console.log body
                             @putToDataSystem body, controllerCallback
 
     putToDataSystem: (documentList, controllerCallback) ->
@@ -75,7 +81,6 @@ class Retriever
                     requestedKey = {}
                     requestedKey[document.pkField] = {}
                     requestedKey[document.pkField] = data[document.pkField]
-                    #console.log requestedKey
                     # Now we request the request to see if the document already exists
                     clientDS.post allRequestURL, {key: data[document.pkField]}, (err, res, body) ->
                         console.log "[error][#{res.statusCode}] #{err}" if err?
@@ -85,6 +90,7 @@ class Retriever
                                 if updateErr?
                                     callback "#{updateRes.statusCode} - #{updateErr}", null
                                 else
+                                    console.log res.statusCode
                                     callback null, body[0].id
                         else # create a new doc
                             clientDS.post 'data/', data, (err, res, body) ->
@@ -100,11 +106,36 @@ class Retriever
                     else
                         callback null, body._id
 
+        # create the "all" request
+        accessFactory = (doctype) -> (callback) =>
+            # The url to create the request
+            allRequestURL = "request/#{doctype}/all/"
+
+            # we define the request textually to allow the parameters to be interpreted
+            allRequest =
+                map: """
+                    function (doc) {
+                        if (doc.docType === "#{doctype}") {
+                            return emit(doc.id, doc);
+                        }
+                    }
+                """
+            console.log "Create request all for doctype #{doctype} to make sure it exists..."
+            clientDS.put allRequestURL, allRequest, (err, res, body) =>
+                if err?
+                    console.log err
+                else
+                    @doctypeList.push doctype
+
+
         for document in documentList
             prepareRequests.push pushFactory @clientDataSystem, document
+            if document.docType not in @doctypeList
+                accessRequests.push accessFactory document.docType
+                @doctypeList.push document.docType # to avoid multiple requests
 
         console.log "Requesting the processor the new data to add..."
-        async.parallel prepareRequests, (err, results) ->
+        async.series prepareRequests, (err, results) ->
             console.log "Documents added or updated to the data system."
             console.log err if err?
             console.log results if results.length? and results.length > 0

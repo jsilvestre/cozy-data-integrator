@@ -46,6 +46,9 @@
     },
     "cozyinstance": {
       "description": "L'application doit connaître l'adresse de votre Cozy pour permettre la récupération de vos données Google."
+    },
+    "All": {
+      "description": "L'application a besoin d'accéder à tous les doctypes pour intégrer les données des entreprises partenares du projet MesInfos."
     }
   }
 }

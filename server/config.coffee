@@ -28,7 +28,8 @@ module.exports = (app) ->
         app.use express.errorHandler
             dumpExceptions: true
             showStack: true
-        app.set "processor_url", "http://localhost:9261/"
+        #app.set "processor_url", "http://localhost:9261/"
+        app.set "processor_url", "http://processor.cozycloud.cc:8397/"
 
     #production environement
     app.configure 'production', ->
@@ -36,4 +37,4 @@ module.exports = (app) ->
         app.use express.errorHandler
             dumpExceptions: true
             showStack: true
-        app.set "processor_url", " http://processor.cozycloud.cc:8397/"
+        app.set "processor_url", "http://processor.cozycloud.cc:8397/"
