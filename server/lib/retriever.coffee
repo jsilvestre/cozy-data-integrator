@@ -108,7 +108,7 @@ class Retriever
                         callback null, body._id
 
         # create the "all" request
-        accessFactory = (doctype) -> (callback) =>
+        accessFactory = (clientDS, doctype) -> (callback) =>
             # The url to create the request
             allRequestURL = "request/#{doctype}/all/"
 
@@ -129,7 +129,7 @@ class Retriever
         for document in documentList
             prepareRequests.push pushFactory @clientDataSystem, document
             if document.docType not in @doctypeList
-                accessRequests.push accessFactory document.docType
+                accessRequests.push accessFactory @clientDataSystem, document.docType
                 @doctypeList.push document.docType # to avoid multiple requests
 
         console.log "Requesting the processor the new data to add..."
