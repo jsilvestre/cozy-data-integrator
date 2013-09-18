@@ -23,7 +23,6 @@ class Retriever
 
             @clientDataSystem.get 'doctypes/', (err, res, body) =>
                 console.log err if err?
-                console.log body
                 for item in body
                     @doctypeList.push item
 
@@ -58,6 +57,7 @@ class Retriever
 
     putToDataSystem: (documentList, controllerCallback) ->
         prepareRequests = []
+        accessRequests = []
 
         pushFactory = (clientDS, document) -> (callback) =>
             data = document.doc
@@ -124,6 +124,7 @@ class Retriever
             console.log "Create request all for doctype #{doctype} to make sure it exists..."
             clientDS.put allRequestURL, allRequest, (err, res, body) =>
                 console.log err if err?
+                callback err, doctype
 
         for document in documentList
             prepareRequests.push pushFactory @clientDataSystem, document
@@ -136,7 +137,16 @@ class Retriever
             console.log "Documents added or updated to the data system."
             console.log err if err?
             console.log results if results.length? and results.length > 0
-            controllerCallback err
+
+            console.log "Creating the corresponding all request..."
+            async.series accessRequests, (errReq, results) ->
+                if errReq
+                    console.log errReq
+                else
+                    console.log "Requests created with success."
+
+                controllerCallback err
+
 
 
     sendStatus: (statuses) ->
