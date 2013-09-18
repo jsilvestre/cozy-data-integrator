@@ -130,14 +130,14 @@ class Retriever
         for document in documentList
             prepareRequests.push pushFactory @clientDataSystem, document
             if document.docType not in @doctypeList
-                #accessRequests.push accessFactory @clientDataSystem, document.docType
+                accessRequests.push accessFactory @clientDataSystem, document.docType
                 @doctypeList.push document.docType # to avoid multiple requests
 
         console.log "Requesting the processor the new data to add..."
         async.series prepareRequests, (err, results) ->
             console.log "Documents added or updated to the data system."
             console.log err if err?
-            console.log results if results.length? and results.length > 0
+            console.log results.length if results? and results.length? and results.length > 0
 
             console.log "Creating the corresponding all request..."
             async.series accessRequests, (errReq, results) ->
