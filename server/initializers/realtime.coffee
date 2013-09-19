@@ -65,7 +65,7 @@ module.exports = initRealtime = (app, server) ->
     setInterval checkStatuses, 1000 * 60 * 60 # 1h
 
     # Detect the COZY status
-    realtime.on 'user.*', (event, id) ->
+    realtime.on 'user.create', (event, id) ->
         console.log "#{event} > #{id}"
         User.find id, (err, user) ->
             console.log "An error occurrend during user retrieval" if err?
@@ -91,7 +91,7 @@ module.exports = initRealtime = (app, server) ->
                 # Also check notifications
                 checkNotification midi.registration_status
 
-    realtime.on 'cozyinstance.*', (event, id) ->
+    realtime.on 'cozyinstance.create', (event, id) ->
         CozyInstance.getInstance (err, ci) ->
 
             console.log err if err?
