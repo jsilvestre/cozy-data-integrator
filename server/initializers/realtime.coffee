@@ -18,13 +18,14 @@ todos =
         text: "N'oubliez pas de lier votre Cozy avec votre compte Privowny !"
         resource:
             app: "privowny"
+###
     google_oauth_registered:
         parent: 'privowny_oauth_registered'
         text: "Importez vos contacts, agendas et photos depuis votre " +\
               "compte Google ou indiquez que vous n'en avez pas !"
         resource:
             app: "collecteur-mesinfos"
-
+###
 # helper to check statuses x notification state
 checkNotification = (statuses) ->
     console.log "Updating notifications..."

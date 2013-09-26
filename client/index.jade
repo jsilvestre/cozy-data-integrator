@@ -26,14 +26,14 @@ html(lang="fr")
             th.text-center Source de données
             th.text-center Date de dernière mise à jour
         tbody
-          tr
-            td.text-center Google
-              td.text-center
-                a(target="_blank", href="oauth/") Activer l'import des mes contacts, agendas et photos Google
-                - if(!isGoogleMarkedAsRegistered) {
-                  |&nbsp;-&nbsp;
-                  a(href="disable-google-notification") Je ne possède pas de compte Google
-                - }
+          //tr
+          // td.text-center Google
+          //    td.text-center
+          //     a(target="_blank", href="oauth/") Activer l'import des mes contacts, agendas et photos Google
+          //      - if(!isGoogleMarkedAsRegistered) {
+          //        |&nbsp;-&nbsp;
+          //        a(href="disable-google-notification") Je ne possède pas de compte Google
+          //      - }
 
           - for(partner in statuses) {
             tr
