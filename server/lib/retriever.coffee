@@ -7,7 +7,6 @@ class Retriever
     token: null
     clientProcessor: null
     clientDataSystem: null
-    doctypeList: []
 
     init: (url, token) ->
         unless @token? or @clientProcessor? or @clientDataSystem?
@@ -15,22 +14,22 @@ class Retriever
             @token = token
             @clientProcessor = new Client url
             @clientDataSystem = new Client "http://localhost:9101/"
+
+            # DS authentification in production
             if process.env.NODE_ENV is "production"
                 console.log "Setting basic authentification..."
                 username = process.env.NAME
                 password = process.env.TOKEN
                 @clientDataSystem.setBasicAuth username, password
-
-            @clientDataSystem.get 'doctypes/', (err, res, body) =>
-                console.log err if err?
-                for item in body
-                    @doctypeList.push item
-
         else
             console.log "Retriever already initialized."
 
     getData: (partner, controllerCallback) ->
+        @token = "testblabla" if not process.env.NODE_ENV? \
+                                 or process.env.NODE_ENV is "development"
+
         url = "token/#{@token}/data/#{partner}"
+        # retrieve the data from the processor
         @clientProcessor.get url, (err, res, body) =>
             if err
                 if res?.statusCode is 401
@@ -56,16 +55,17 @@ class Retriever
 
     putToDataSystem: (documentList, controllerCallback) ->
         prepareRequests = []
-        accessRequests = []
 
         pushFactory = (clientDS, document) -> (callback) =>
             data = document.doc
+
+            # Update is done considering a the "pkField"
             if document.action is "update" and document.pkField?
 
-                # The url to create the request
-                allRequestURL = "request/#{data.docType}/by#{document.pkField}/"
+                allRequestURL = "request/#{data.docType}/allby#{document.pkField}/"
 
                 # we define the request textually to allow the parameters to be interpreted
+                # all the doc indexed by the pkField
                 allRequest =
                     map: """
                         function (doc) {
@@ -86,11 +86,11 @@ class Retriever
                         console.log "[error][#{res.statusCode}] #{err}" if err?
                         if body? and body.length > 0 # update the existing doc
                             url = "data/#{body[0].id}/"
+                            console.log "update !"
                             clientDS.put url, data, (updateErr, updateRes, updateBody) ->
                                 if updateErr?
                                     callback "#{updateRes.statusCode} - #{updateErr}", null
                                 else
-                                    console.log res.statusCode
                                     callback null, body[0].id
                         else # create a new doc
                             clientDS.post 'data/', data, (err, res, body) ->
@@ -106,48 +106,18 @@ class Retriever
                     else
                         callback null, body._id
 
-        # create the "all" request
-        accessFactory = (clientDS, doctype) -> (callback) =>
-            console.log "Creating request for doctype #{doctype}"
-            # The url to create the request
-            allRequestURL = "request/#{doctype}/all/"
-
-            # we define the request textually to allow the parameters to be interpreted
-            allRequest =
-                map: """
-                    function (doc) {
-                        if (doc.docType === "#{doctype}") {
-                            return emit(doc._id, doc);
-                        }
-                    }
-                """
-            console.log "Create request all for doctype #{doctype} to make sure it exists..."
-            clientDS.put allRequestURL, allRequest, (err, res, body) =>
-                console.log err if err?
-                callback err, doctype
-
+        console.log "> #{documentList.length} docs to add"
         for document in documentList
             prepareRequests.push pushFactory @clientDataSystem, document
-            if document.docType not in @doctypeList
-                accessRequests.push accessFactory @clientDataSystem, document.docType
-                @doctypeList.push document.docType # to avoid multiple requests
 
-        console.log "Requesting the processor the new data to add..."
+        console.log "Adding requested data to the data system..."
         async.series prepareRequests, (err, results) ->
             console.log "Documents added or updated to the data system."
             console.log err if err?
-            console.log results.length if results? and results.length? and results.length > 0
+            if results? and results.length? and results.length > 0
+                console.log "> Number of docs added or updated: #{results.length}"
 
-            console.log "Creating the corresponding all request..."
-            async.series accessRequests, (errReq, results) ->
-                if errReq
-                    console.log errReq
-                else
-                    console.log "Requests created with success."
-
-                controllerCallback err
-
-
+            controllerCallback err
 
     sendStatus: (statuses) ->
         console.log "Sending status to the processor..."
