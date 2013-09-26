@@ -56,6 +56,7 @@ class Retriever
     putToDataSystem: (documentList, controllerCallback) ->
         prepareRequests = []
 
+        # we need to make a 'factory' to run the code in a loop
         pushFactory = (clientDS, document) -> (callback) =>
             data = document.doc
 
@@ -119,6 +120,7 @@ class Retriever
 
             controllerCallback err
 
+    # Update the processor with cozy's status
     sendStatus: (statuses) ->
         console.log "Sending status to the processor..."
         url = "token/#{@token}/status/"
