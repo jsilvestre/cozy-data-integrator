@@ -44,7 +44,7 @@ module.exports = init = (callback) ->
                         unless midi?
                             console.log "No existing document, creating..."
                             MesInfosIntegrator.create {}, (err, midi) ->
-                                console.log "Config created."
+                                console.log "MesInfosIntegratorConfig created."
                                 callback err
                         else
                             callback err

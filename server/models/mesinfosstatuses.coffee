@@ -22,4 +22,4 @@ MesInfosStatuses.getStatuses = (callback) ->
         else if not (statuses? and statuses.length > 0)
             callback null, null
         else
-            statuses = statuses[0]
+            callback null, statuses[0]

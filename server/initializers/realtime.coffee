@@ -53,7 +53,7 @@ checkStatuses = -> MesInfosIntegrator.getConfig (err, integrator) ->
     if err?
         console.log "CheckStatuses: #{err}"
     else
-        checkNotification integrator.registration_status
+        checkNotification integrator.registrationStatuses
 
 module.exports = initRealtime = (app, server) ->
 
