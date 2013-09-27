@@ -30,8 +30,9 @@ MesInfosIntegrator.getConfig = (callback) ->
 
     MesInfosIntegrator.request 'all', (err, integrator) ->
         integrator = integrator[0] if integrator? and integrator.length > 0
-         if not integrator?
-            console.log "No Integrator found"
-            callback new Error "No integrator found", null
+        if err?
+            callback err, null
+        else if not (integrator? and integrator.length > 0)
+            callback null, null
         else
             MesInfosStatuses.getStatuses updateIntegrator

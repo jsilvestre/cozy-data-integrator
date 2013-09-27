@@ -21,7 +21,7 @@ module.exports = init = (callback) ->
                         console.log msg
                         callback err
                     else
-                        if mis.length is 0
+                        unless mis?
                             console.log "No existing document, creating..."
                             MesInfosStatuses.create {}, (err, mis) ->
                                 console.log "Statuses intialized."
@@ -41,7 +41,7 @@ module.exports = init = (callback) ->
                         console.log msg
                         callback err
                     else
-                        if midi.length is 0
+                        unless midi?
                             console.log "No existing document, creating..."
                             MesInfosIntegrator.create {}, (err, midi) ->
                                 console.log "Config created."

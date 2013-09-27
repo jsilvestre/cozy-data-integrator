@@ -20,6 +20,6 @@ MesInfosStatuses.getStatuses = (callback) ->
         if err
             callback err, null
         else if not (statuses? and statuses.length > 0)
-            callback new Error 'No status found', null
+            callback null, null
         else
             statuses = statuses[0]
