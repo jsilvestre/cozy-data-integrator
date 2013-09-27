@@ -21,7 +21,8 @@ module.exports = (app) ->
                         if err?
                             res.send 500, "Error while retrieving data. #{err}"
                         else
-                            res.send 200, "Ping successful, Data retrieved successfully."
+                            msg = "Ping ok, Data retrieved successfully."
+                            res.send 200, msg
             else
                 # 409 Conflict
                 res.send 409, 'The data integrator is already updating.'

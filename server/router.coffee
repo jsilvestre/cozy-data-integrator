@@ -8,6 +8,7 @@ module.exports = (app) ->
     app.get '/public/ping/:partner/?', integrator.ping
 
     app.get '/', integrator.main
-    app.get '/disable-google-notification/?', integrator.disableGoogleNotification
+    app.get '/disable-google-notification/?', \
+            integrator.disableGoogleNotification
     app.get '/oauth/', oauth.initiate
     app.get '/oauth/callback/?', oauth.callback

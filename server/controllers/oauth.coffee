@@ -2,8 +2,13 @@ OAuth = require('mashape-oauth').OAuth
 CozyInstance = require '../models/cozyinstance'
 
 oauthTemp = {}
+requestUrl = "https://www.google.com/accounts/OAuthGetRequestToken?scope="
+requestUrl += "https%3A%2F%2Fwww.google.com%2Fcalendar%2Ffeeds%2F+"
+requestUrl += "https%3A%2F%2Fwww.google.com%2Fm8%2Ffeeds%"
+requestUrl += "2F+https%3A%2F%2Fpicasaweb.google.com%2Fdata%2F"
+
 oa = new OAuth
-    requestUrl: "https://www.google.com/accounts/OAuthGetRequestToken?scope=https%3A%2F%2Fwww.google.com%2Fcalendar%2Ffeeds%2F+https%3A%2F%2Fwww.google.com%2Fm8%2Ffeeds%2F+https%3A%2F%2Fpicasaweb.google.com%2Fdata%2F"
+    requestUrl: requestUrl
     accessUrl: "https://www.google.com/accounts/OAuthGetAccessToken"
     callback: "http://localhost:9260/oauth/callback"
     consumerKey: "anonymous"
@@ -19,19 +24,20 @@ module.exports = (app) ->
 
     # Set the right callback URL
     CozyInstance.getInstance (err, ci) ->
-        app.oa.authorizeCallback = "http://#{ci.domain}/apps/collecteur-mesinfos/oauth/callback"
+        url = "http://#{ci.domain}/apps/collecteur-mesinfos/oauth/callback"
+        app.oa.authorizeCallback = url
 
     initiate: (req, res) ->
-        app.oa.getOAuthRequestToken (err, oauth_token, oauth_token_secret, results) ->
+        app.oa.getOAuthRequestToken (err, token, tokenSecret, results) ->
             if err?
                 res.error 500, err
             else
-                oauthTemp[oauth_token] =
-                    token: oauth_token
-                    secret: oauth_token_secret
+                oauthTemp[token] =
+                    token: token
+                    secret: tokenSecret
                 host = "https://www.google.com/"
                 url = "accounts/OAuthAuthorizeToken"
-                params = "?oauth_token=#{oauth_token}&hd=default&hl=fr"
+                params = "?oauth_token=#{token}&hd=default&hl=fr"
                 res.redirect "#{host}#{url}#{params}"
 
     callback: (req, res) ->
@@ -47,21 +53,24 @@ module.exports = (app) ->
             else
                 console.log 'token: ' + token
                 console.log 'secret: ' + secret
-                url = "https://www.googleapis.com/calendar/v3/users/me/calendarList"
+                url = "https://www.googleapis.com/calendar/"
+                url += "v3/users/me/calendarList"
                 oauth =
                     consumer_key: 'anonymous'
                     consumer_secret: 'anonymous'
                     token: token
                     token_secret: secret
 
-                request.get {url: url, oauth: oauth, json: true}, (err, res, body) ->
+                data = {url: url, oauth: oauth, json: true}
+                request.get data, (err, res, body) ->
                     console.log res.statusCode
                     console.log err
                     console.log body unless err?
                 res.send 200, "Oauth callback url"
 
 # https://groups.google.com/forum/#!topic/google-help-dataapi/GnrI76P8tsQ
-# http://stackoverflow.com/questions/8146756/google-oauthgetrequesttoken-returns-signature-invalid
+# http://stackoverflow.com/questions/8146756/
+# google-oauthgetrequesttoken-returns-signature-invalid
 
 # The request to send :
 # https://developers.google.com/accounts/docs/OAuth_ref#AccessToken

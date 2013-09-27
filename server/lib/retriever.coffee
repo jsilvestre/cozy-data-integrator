@@ -63,10 +63,11 @@ class Retriever
             # Update is done considering a the "pkField"
             if document.action is "update" and document.pkField?
 
-                allRequestURL = "request/#{data.docType}/allby#{document.pkField}/"
+                allRequestURL = "request/#{data.docType}/"
+                allRequestUrl += "allby#{document.pkField}/"
 
-                # we define the request textually to allow the parameters to be interpreted
-                # all the doc indexed by the pkField
+                # we define the request textually to allow the parameters to be
+                # interpreted all the doc indexed by the pkField
                 allRequest =
                     map: """
                         function (doc) {
@@ -75,22 +76,27 @@ class Retriever
                             }
                         }
                     """
-                console.log "Create request by#{document.pkField} for doctype #{data.docType} to make sure it exists..."
+                msg = "Create request by#{document.pkField} "
+                msg += "for doctype #{data.docType} to make sure it exists..."
+                console.log msg
                 clientDS.put allRequestURL, allRequest, (err, res, body) =>
 
                     # request a specific document among the doctype's documents
                     requestedKey = {}
                     requestedKey[document.pkField] = {}
                     requestedKey[document.pkField] = data[document.pkField]
-                    # Now we request the request to see if the document already exists
-                    clientDS.post allRequestURL, {key: data[document.pkField]}, (err, res, body) ->
+                    # Now we request the request to see if the document already
+                    # exists
+                    dsData = {key: data[document.pkField]}
+                    clientDS.post allRequestURL, dsData, (err, res, body) ->
                         console.log "[error][#{res.statusCode}] #{err}" if err?
                         if body? and body.length > 0 # update the existing doc
                             url = "data/#{body[0].id}/"
                             console.log "update !"
-                            clientDS.put url, data, (updateErr, updateRes, updateBody) ->
-                                if updateErr?
-                                    callback "#{updateRes.statusCode} - #{updateErr}", null
+
+                            clientDS.put url, data, (err, res, body) ->
+                                if err?
+                                    callback "#{res.statusCode} - #{err}", null
                                 else
                                     callback null, body[0].id
                         else # create a new doc
@@ -116,7 +122,8 @@ class Retriever
             console.log "Documents added or updated to the data system."
             console.log err if err?
             if results? and results.length? and results.length > 0
-                console.log "> Number of docs added or updated: #{results.length}"
+                nbDocs = results.length
+                console.log "> amount of added or updated docs: #{nbDocs}"
 
             controllerCallback err
 
