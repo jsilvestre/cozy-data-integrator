@@ -49,11 +49,11 @@ checkNotification = (statuses) ->
                             console.log errorMsg, err
 
 # helper to check the statuses x notification state
-checkStatuses = -> MesInfosIntegrator.getConfig (err, midi) ->
+checkStatuses = -> MesInfosIntegrator.getConfig (err, integrator) ->
     if err?
         console.log "CheckStatuses: #{err}"
     else
-        checkNotification midi.registration_status
+        checkNotification integrator.registration_status
 
 module.exports = initRealtime = (app, server) ->
 
@@ -80,32 +80,29 @@ module.exports = initRealtime = (app, server) ->
 
     realtime.on 'mesinfosstatuses.update', (event, id) ->
         console.log "#{event} > #{id}"
-        MesInfosIntegrator.getConfig (err, midi) ->
+        MesInfosIntegrator.getConfig (err, integrator) ->
             if err?
                 console.log err
             else
                 # Sends the statuses to the data processor
                 retriever = require '../lib/retriever'
-                retriever.init app.get('processor_url'), midi.password
-                retriever.sendStatus midi.registration_status
+                retriever.init app.get('processor_url'), integrator.password
+                retriever.sendStatus integrator.registration_status
 
                 # Also check notifications
-                checkNotification midi.registration_status
+                checkNotification integrator.registration_status
 
     realtime.on 'cozyinstance.create', (event, id) ->
-        CozyInstance.getInstance (err, ci) ->
+        CozyInstance.getInstance (err, instance) ->
 
             console.log err if err?
 
             mesInfosHelpURL = "http://www.enov.fr/mesinfos/"
-            if ci and ci.helpUrl isnt mesInfosHelpURL
+            if instance and instance.helpUrl isnt mesInfosHelpURL
                 attr =
                     helpUrl: mesInfosHelpURL
                     locale: 'fr'
-                ci.updateAttributes attr, (err, ci) ->
+                instance.updateAttributes attr, (err, instance) ->
                     if err?
                         console.log "realtime # An error occurred while " + \
                                     "updating CozyInstance: #{err}"
-
-
-
