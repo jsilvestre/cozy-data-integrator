@@ -16,6 +16,10 @@ module.exports = MesInfosStatuses = db.define 'MesInfosStatuses',
         default: false
 
 MesInfosStatuses.getStatuses = (callback) ->
-    MesInfosStatuses.request 'all', (err, mis) ->
-        mis = mis[0] if mis? and mis.length > 0
-        callback(err, mis)
+    MesInfosStatuses.request 'all', (err, statuses) ->
+        if err
+            callback err, null
+        else if not (statuses? and statuses.length > 0)
+            callback new Error 'No status found', null
+        else
+            statuses = statuses[0]
