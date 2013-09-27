@@ -35,18 +35,6 @@
   "readmeFilename": "README.md",
   "cozy-displayName": "Collecteur de données",
   "cozy-permissions": {
-    "mesinfosintegrator": {
-      "description": "Permet de stocker des éléments de configuration interne à l'application comme les dates de dernières mises à jour."
-    },
-    "mesinfosstatuses": {
-      "description": "Afin de vous rappeler certaines action à entreprendre, des statuts sont stockés."
-    },
-    "user": {
-      "description": "Afin de vous rappeler certaines action, l'application doit savoir si vous vous êtes ou non inscrit sur votre Cozy."
-    },
-    "cozyinstance": {
-      "description": "L'application doit connaître l'adresse de votre Cozy pour permettre la récupération de vos données Google."
-    },
     "All": {
       "description": "L'application a besoin d'accéder à tous les doctypes pour intégrer les données des entreprises partenares du projet MesInfos."
     }
