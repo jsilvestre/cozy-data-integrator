@@ -7,6 +7,6 @@ module.exports = CozyInstance = db.define 'CozyInstance',
     helpUrl: String
 
 CozyInstance.getInstance = (callback) ->
-    CozyInstance.request 'all', (err, ide) ->
-        ide = ide[0] if ide? and ide.length > 0
-        callback(err, ide)
+    CozyInstance.request 'all', (err, instances) ->
+        instances = instances[0] if instances? and instances.length > 0
+        callback err, instances
