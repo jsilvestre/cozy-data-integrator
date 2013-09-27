@@ -94,7 +94,7 @@ class Retriever
                             url = "data/#{body[0].id}/"
                             console.log "update !"
 
-                            clientDS.put url, data, (err, res, body) ->
+                            clientDS.put url, data, (err, res, updateBody) ->
                                 if err?
                                     callback "#{res.statusCode} - #{err}", null
                                 else
