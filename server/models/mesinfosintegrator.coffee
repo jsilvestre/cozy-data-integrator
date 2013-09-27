@@ -20,7 +20,7 @@ MesInfosIntegrator.getConfig = (callback) ->
         if err?
             console.log "MIIntegratorModel > Can't get statuses"
             callback err, null
-        else        else
+        else
             integrator.registration_status =
                 cozy_registered: statuses.cozy_registered
                 privowny_registered: statuses.privowny_registered
