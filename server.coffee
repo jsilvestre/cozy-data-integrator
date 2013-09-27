@@ -6,8 +6,8 @@ configure = require './server/config'
 realtimeInitializer = require './server/initializers/realtime'
 
 module.exports = app = express()
-configure(app)
-router(app)
+configure app
+router app
 
 if not module.parent
     init (err) -> # ./init.coffee
@@ -20,5 +20,5 @@ if not module.parent
         host = process.env.HOST or "127.0.0.1"
         server = http.createServer(app).listen port, host, ->
             console.log "Server listening on %s:%d within %s environment",
-                host, port, app.get('env')
-            realtimeInitializer(app, server)
+                host, port, app.get 'env'
+            realtimeInitializer app, server
