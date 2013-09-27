@@ -1,21 +1,21 @@
 {
   "name": "collecteur-mesinfos",
-  "version": "0.0.1",
+  "version": "0.8.0",
   "description": "Le collecteur de données pour le projet MesInfos vous permet de récupérer automatiquement vos données détenues par les entreprises.",
   "main": "server.coffee",
   "dependencies": {
-    "jugglingdb": "~0.2.0-25",
-    "jugglingdb-cozy-adapter": "~0.3.2",
-    "express": "~3.1.0",
-    "async": "~0.2.9",
-    "cozy-realtime-adapter": "~0.11.0",
+    "jugglingdb": "0.2.0-25",
+    "jugglingdb-cozy-adapter": "0.3.2",
+    "express": "3.1.0",
+    "async": "0.2.9",
+    "cozy-realtime-adapter": "0.11.0",
     "cozy-notifications-helper": "0.0.2",
-    "request-json": "~0.3.0",
-    "oauth": "~0.9.10",
-    "jade": "~0.34.1",
-    "dateformat": "~1.0.6-1.2.3",
-    "mashape-oauth": "~0.1.5",
-    "request": "~2.26.0"
+    "request-json": "0.3.0",
+    "oauth": "0.9.10",
+    "jade": "0.34.1",
+    "dateformat": "1.0.6-1.2.3",
+    "mashape-oauth": "0.1.5",
+    "request": "2.26.0"
   },
   "devDependencies": {
     "chai": "~1.5.0",
