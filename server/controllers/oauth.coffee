@@ -51,8 +51,6 @@ module.exports = (app) ->
                 console.log "Error while retrieving access token: "
                 res.error 500, err
             else
-                console.log 'token: ' + token
-                console.log 'secret: ' + secret
                 url = "https://www.googleapis.com/calendar/"
                 url += "v3/users/me/calendarList"
                 oauth =
