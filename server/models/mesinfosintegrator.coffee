@@ -13,23 +13,12 @@ module.exports = MesInfosIntegrator = db.define 'mesinfosintegrator',
     data_integrator_status:
         type: Object
         default: {}
+    registrationStatuses:
+        type: Object
+        default: {}
 
 
 MesInfosIntegrator.getConfig = (callback) ->
-    updateIntegrator = (err, statuses) ->
-        if err?
-            console.log "MIIntegratorModel > Can't get statuses"
-            return null
-        else if statuses?
-            tempStatuses =
-                cozy_registered: statuses.cozy_registered
-                privowny_registered: statuses.privowny_registered
-                privowny_oauth_registered: statuses.privowny_oauth_registered
-                google_oauth_registered: statuses.google_oauth_registered
-            return tempStatuses
-        else
-            console.log "No mesinfostatuses"
-            return null
 
     MesInfosIntegrator.request 'all', (err, integrator) ->
         if err?
@@ -44,13 +33,11 @@ MesInfosIntegrator.getConfig = (callback) ->
                     callback null, null
                 else
                     # workaround because we can't add data easily in that object
-                    clonedIntegrator = {}
-                    for key, value of integrator.toJSON()
-                        clonedIntegrator[key] = value
+                    # so we add it to the model but feed it from another
+                    integrator.registrationStatuses =
+                        cozy_registered: statuses.cozy_registered
+                        privowny_registered: statuses.privowny_registered
+                        privowny_oauth_registered: statuses.privowny_oauth_registered
+                        google_oauth_registered: statuses.google_oauth_registered
 
-                    if statuses?
-                        clonedIntegrator.registrationStatuses = statuses
-                    else
-                        clonedIntegrator.registrationStatuses = {}
-
-                    callback null, clonedIntegrator
+                    callback null, integrator
