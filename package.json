@@ -35,17 +35,8 @@
   "readmeFilename": "README.md",
   "cozy-displayName": "Collecteur de données",
   "cozy-permissions": {
-    "cozyinstance": {
-      "description": ""
-    },
-    "mesinfosintegrator": {
-      "description": ""
-    },
-    "mesinfosstatuses": {
-      "description": ""
-    },
-    "user": {
-      "description": ""
+    "All": {
+      "description": "L'application a besoin d'accéder à tous les doctypes pour intégrer les données des entreprises partenares du projet MesInfos."
     }
   }
 }
