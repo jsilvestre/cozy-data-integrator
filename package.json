@@ -35,16 +35,16 @@
   "readmeFilename": "README.md",
   "cozy-displayName": "Collecteur de données",
   "cozy-permissions": {
-    "CozyInstance": {
+    "cozyinstance": {
       "description": ""
     },
-    "MesInfosIntegrator": {
+    "mesinfosintegrator": {
       "description": ""
     },
-    "MesInfosStatuses": {
+    "mesinfosstatuses": {
       "description": ""
     },
-    "User": {
+    "user": {
       "description": ""
     }
   }
