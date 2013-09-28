@@ -69,7 +69,7 @@ module.exports = (app) ->
                         date: dateFormat value, "dd/mm/yyyy"
                         time: dateFormat value, "HH:MM"
 
-                rs = integrator.registration_status
+                rs = integrator.registrationStatuses
 
                 # render template with calculated data
                 opts =
