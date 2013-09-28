@@ -2,7 +2,7 @@ db = require '../db/cozy-adapter'
 MesInfosStatuses = require './mesinfosstatuses'
 
 
-module.exports = MesInfosIntegrator = db.define 'mesinfosintegrator',
+module.exports = MesInfosIntegrator = db.define 'MesInfosIntegrator',
     id: String
     password:
         type: String
