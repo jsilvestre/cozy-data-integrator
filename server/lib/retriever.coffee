@@ -64,7 +64,7 @@ class Retriever
             if document.action is "update" and document.pkField?
 
                 allRequestURL = "request/#{data.docType}/"
-                allRequestUrl += "allby#{document.pkField}/"
+                allRequestURL += "allby#{document.pkField}/"
 
                 # we define the request textually to allow the parameters to be
                 # interpreted all the doc indexed by the pkField
