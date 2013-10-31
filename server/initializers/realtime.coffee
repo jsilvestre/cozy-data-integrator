@@ -92,7 +92,7 @@ module.exports = initRealtime = (app, server) ->
                 # Also check notifications
                 checkNotification integrator.registration_status
 
-    realtime.on 'cozyinstance.create', (event, id) ->
+    realtime.on 'cozyinstance.*', (event, id) ->
         CozyInstance.getInstance (err, instance) ->
 
             console.log err if err?
