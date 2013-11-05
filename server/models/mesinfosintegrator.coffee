@@ -32,12 +32,13 @@ MesInfosIntegrator.getConfig = (callback) ->
                     console.log "MIIntegratorModel > Can't get statuses"
                     callback null, null
                 else
-                    # workaround because we can't add data easily in that object
-                    # so we add it to the model but feed it from another
+                    privRegistered = statuses.privowny_registered
+                    privoAuthRegistered = statuses.privowny_oauth_registered
+                    googoAuthRegistered = statuses.google_oauth_registered
                     integrator.registrationStatuses =
                         cozy_registered: statuses.cozy_registered
-                        privowny_registered: statuses.privowny_registered
-                        privowny_oauth_registered: statuses.privowny_oauth_registered
-                        google_oauth_registered: statuses.google_oauth_registered
+                        privowny_registered: privRegistered
+                        privowny_oauth_registered: privoAuthRegistered
+                        google_oauth_registered: googoAuthRegistered
 
                     callback null, integrator

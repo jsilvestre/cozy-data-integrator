@@ -24,7 +24,8 @@ module.exports = (app) ->
 
     # Set the right callback URL
     CozyInstance.getInstance (err, instance) ->
-        url = "http://#{instance.domain}/apps/collecteur-mesinfos/oauth/callback"
+        url = "http://#{instance.domain}/apps/collecteur-mesinfos/oauth/" + \
+              "callback"
         app.oa.authorizeCallback = url
 
     initiate: (req, res) ->
