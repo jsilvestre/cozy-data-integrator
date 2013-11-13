@@ -22,7 +22,8 @@
     "chai": "1.8.1",
     "sinon": "1.7.3",
     "cozy-fixtures": "1.0.2",
-    "coffeelint": "0.6.1"
+    "coffeelint": "0.6.1",
+    "coffee-script": "*"
   },
   "scripts": {
     "test": "cake tests",
