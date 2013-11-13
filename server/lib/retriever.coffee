@@ -31,7 +31,7 @@ class Retriever
             log "Retriever already initialized."
 
     setUrl: (url) ->
-        @processorUrl = url
+        @dataProcessorUrl = url
 
     getData: (partner, controllerCallback) ->
         if not process.env.NODE_ENV? or process.env.NODE_ENV is "development"
