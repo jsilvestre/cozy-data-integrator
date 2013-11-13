@@ -8,7 +8,6 @@ helpers.options =
     serverHost: 'localhost'
     serverPort: '8888'
 client = new Client "http://#{helpers.options.serverHost}:#{helpers.options.serverPort}/"
-clientDS = new Client "http://localhost:9101/"
 
 describe "Token management", ->
 
