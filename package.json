@@ -23,7 +23,8 @@
     "sinon": "1.7.3",
     "cozy-fixtures": "1.0.3",
     "coffeelint": "0.6.1",
-    "coffee-script": "*"
+    "coffee-script": "*",
+    "nock": "0.23.0"
   },
   "scripts": {
     "test": "cake tests",
