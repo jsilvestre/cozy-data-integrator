@@ -55,13 +55,12 @@ describe "Notification checker", ->
             @sandbox = sinon.sandbox.create()
             notifChecker = require '../server/lib/notification-checker'
             @stub = @sandbox.stub notifChecker, 'updateNotifications'
+            @stub.callsArg 1
 
         before (done) ->
-            @timeout 2500
             {checkNotifications} = require '../server/lib/notification-checker'
-            checkNotifications()
-            # since the function is async, wait for it to be processed
-            setTimeout done, 2000
+            checkNotifications ->
+                done()
 
         after -> @sandbox.restore()
 
@@ -72,7 +71,7 @@ describe "Notification checker", ->
         it "With statuses as parameters", ->
             data = require './fixtures/fixtures.json'
             delete data[1].docType
-            @stub.args[0].length.should.equal 1
+            @stub.args[0].length.should.equal 2
             callArgs = @stub.args[0]
             data[1].should.deep.equal callArgs[0]
 

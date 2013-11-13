@@ -32,15 +32,20 @@ module.exports.startNotificationChecker = ->
     module.exports.checkNotifications()
     setInterval module.exports.checkNotifications, 1000 * 60 * 60 # 1h
 
-module.exports.checkNotifications = ->
+module.exports.checkNotifications = (callback) ->
+    callback ?= ->
     MesInfosIntegrator.getConfig (err, integrator) ->
         if err?
-            log "CheckStatuses: #{err}"
+            msg = "CheckStatuses: #{err}"
+            log msg
+            callback msg
         else if not integrator?
-            log "CheckStatuses: couldn't retrieve integrator config"
+            msg = "CheckStatuses: couldn't retrieve integrator config"
+            log msg
+            callback msg
         else
             statuses = integrator.getRegistrationStatuses()
-            module.exports.updateNotifications statuses
+            module.exports.updateNotifications statuses, callback
 
 # helper to check statuses x notification state
 module.exports.updateNotifications = (statuses, callback) ->
