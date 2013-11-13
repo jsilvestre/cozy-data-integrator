@@ -1,7 +1,6 @@
 db = require '../db/cozy-adapter'
 MesInfosStatuses = require './mesinfosstatuses'
 
-
 module.exports = MesInfosIntegrator = db.define 'MesInfosIntegrator',
     id: String
     password:
@@ -13,13 +12,8 @@ module.exports = MesInfosIntegrator = db.define 'MesInfosIntegrator',
     data_integrator_status:
         type: Object
         default: {}
-    registrationStatuses:
-        type: Object
-        default: {}
-
 
 MesInfosIntegrator.getConfig = (callback) ->
-
     MesInfosIntegrator.request 'all', (err, integrator) ->
         if err?
             callback err, null
@@ -35,10 +29,13 @@ MesInfosIntegrator.getConfig = (callback) ->
                     privRegistered = statuses.privowny_registered
                     privoAuthRegistered = statuses.privowny_oauth_registered
                     googoAuthRegistered = statuses.google_oauth_registered
-                    integrator.registrationStatuses =
+                    integrator.__data.registrationStatuses =
                         cozy_registered: statuses.cozy_registered
                         privowny_registered: privRegistered
                         privowny_oauth_registered: privoAuthRegistered
                         google_oauth_registered: googoAuthRegistered
 
                     callback null, integrator
+
+MesInfosIntegrator::getRegistrationStatuses = ->
+    return @__data.registrationStatuses

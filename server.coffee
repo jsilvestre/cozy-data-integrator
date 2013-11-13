@@ -3,7 +3,7 @@ express = require 'express'
 init = require './init'
 router = require './server/router'
 configure = require './server/config'
-realtimeInitializer = require './server/initializers/realtime'
+{realtimeInitializer} = require './server/initializers/realtime'
 
 module.exports = app = express()
 configure app

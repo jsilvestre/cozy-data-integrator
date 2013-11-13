@@ -1,0 +1,15 @@
+[
+{
+    "docType": "MesInfosIntegrator",
+    "password": "",
+    "isUpdating": false,
+    "data_integrator_status": {}
+},
+{
+    "docType": "MesInfosStatuses",
+    "cozy_registered": false,
+    "privowny_registered": false,
+    "privowny_oauth_registered": false,
+    "google_oauth_registered": false
+}
+]

@@ -9,26 +9,20 @@ module.exports = (app) ->
     ping: (req, res) ->
         MesInfosIntegrator.getConfig (err, integrator) ->
 
-            return res.error 500, 'Internal server error', err if err
-
-            unless integrator.isUpdating
-                integrator.updateAttributes isUpdating: false, (err) ->
-                    res.error 500, 'Error while setting the status', err if err
-
-                    # execute the HTTP request to processor
-                    retriever = require('../lib/retriever.coffee')
-                    password = integrator.password
-                    retriever.init app.get('processor_url'), password
-                    retriever.getData req.params.partner, (err) ->
-                        if err?
-                            res.send 500, "Error while retrieving data. #{err}"
-                        else
-                            msg = "Ping ok, Data retrieved successfully."
-                            res.send 200, msg
+            if err?
+                return res.send 500, error: "Internal server error -- #{err}"
             else
-                # 409 Conflict
-                res.send 409, 'The data integrator is already updating.'
-
+                # execute the HTTP request to processor
+                retriever = require('../lib/retriever.coffee')
+                password = integrator.password
+                retriever.init app.get('processor_url'), password
+                retriever.getData req.params.partner, (err) ->
+                    if err?
+                        msg = "Error while retrieving data."
+                        res.send 500, error: "#{msg} -- #{err}"
+                    else
+                        msg = "Ping ok, Data retrieved successfully."
+                        res.send 200, success: msg
 
     index: (req, res) ->
 
@@ -69,7 +63,7 @@ module.exports = (app) ->
                         date: dateFormat value, "dd/mm/yyyy"
                         time: dateFormat value, "HH:MM"
 
-                rs = integrator.registrationStatuses
+                rs = integrator.getRegistrationStatuses()
 
                 # render template with calculated data
                 opts =

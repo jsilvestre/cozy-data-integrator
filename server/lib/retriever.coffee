@@ -2,48 +2,57 @@ Client = require('request-json').JsonClient
 async = require 'async'
 MesInfosIntegrator = require '../models/mesinfosintegrator'
 
+log = ->
+    if process.env.SILENT? and process.env.SILENT is "false"
+        console.log.apply console, arguments
+
 class Retriever
 
     token: null
+    dataProcessorUrl: null
     clientProcessor: null
     clientDataSystem: null
 
-    init: (url, token) ->
+    init: (token, url) ->
         unless @token? or @clientProcessor? or @clientDataSystem?
-            console.log "Initialize the retriever..."
+            log "Initialize the retriever..."
             @token = token
+            url = @dataProcessorUrl or url
             @clientProcessor = new Client url
             @clientDataSystem = new Client "http://localhost:9101/"
 
             # DS authentification in production
             if process.env.NODE_ENV is "production"
-                console.log "Setting basic authentification..."
+                log "Setting basic authentification..."
                 username = process.env.NAME
                 password = process.env.TOKEN
                 @clientDataSystem.setBasicAuth username, password
         else
-            console.log "Retriever already initialized."
+            log "Retriever already initialized."
+
+    setUrl: (url) ->
+        @processorUrl = url
 
     getData: (partner, controllerCallback) ->
-        @token = "testblabla" if not process.env.NODE_ENV? \
-                                 or process.env.NODE_ENV is "development"
+        if not process.env.NODE_ENV? or process.env.NODE_ENV is "development"
+            @token = "testblabla"
 
         url = "token/#{@token}/data/#{partner}"
         # retrieve the data from the processor
         @clientProcessor.get url, (err, res, body) =>
             if err
                 if res?.statusCode is 401
-                    console.log "Authentification error..."
+                    log "Authentification error..."
 
                 msg = "Couldn't get the data of [#{partner}] " + \
                       "from the Data Processor. -- #{err}"
-                console.log msg
+                log msg
                 controllerCallback msg
             else
                 # we update the "last update" date for the partner
                 MesInfosIntegrator.getConfig (err, midi) =>
                     if err?
-                        console.log "Retriever:getData > #{err}"
+                        log "Retriever:getData > #{err}"
                     else
                         statuses = midi.data_integrator_status
                         statuses[partner] = {} unless statuses[partner]?
@@ -78,7 +87,7 @@ class Retriever
                     """
                 msg = "Create request by#{document.pkField} "
                 msg += "for doctype #{data.docType} to make sure it exists..."
-                console.log msg
+                log msg
                 clientDS.put allRequestURL, allRequest, (err, res, body) =>
 
                     # request a specific document among the doctype's documents
@@ -89,10 +98,10 @@ class Retriever
                     # exists
                     dsData = {key: data[document.pkField]}
                     clientDS.post allRequestURL, dsData, (err, res, body) ->
-                        console.log "[error][#{res.statusCode}] #{err}" if err?
+                        log "[error][#{res.statusCode}] #{err}" if err?
                         if body? and body.length > 0 # update the existing doc
                             url = "data/#{body[0].id}/"
-                            console.log "update !"
+                            log "update !"
 
                             clientDS.put url, data, (err, res, updateBody) ->
                                 if err?
@@ -113,28 +122,28 @@ class Retriever
                     else
                         callback null, body._id
 
-        console.log "> #{documentList.length} docs to add"
+        log "> #{documentList.length} docs to add"
         for document in documentList
             prepareRequests.push pushFactory @clientDataSystem, document
 
-        console.log "Adding requested data to the data system..."
+        log "Adding requested data to the data system..."
         async.series prepareRequests, (err, results) ->
-            console.log "Documents added or updated to the data system."
-            console.log err if err?
+            log "Documents added or updated to the data system."
+            log err if err?
             if results? and results.length? and results.length > 0
                 nbDocs = results.length
-                console.log "> amount of added or updated docs: #{nbDocs}"
+                log "> amount of added or updated docs: #{nbDocs}"
 
             controllerCallback err
 
     # Update the processor with cozy's status
     sendStatus: (statuses) ->
-        console.log "Sending status to the processor..."
+        log "Sending status to the processor..."
         url = "token/#{@token}/status/"
         @clientProcessor.post url, statuses, (err, res, body) ->
             if err?
-                console.log "Send statuses: #{err}"
+                log "Send statuses: #{err}"
             else
-                console.log "#{res.statusCode} - #{body}"
+                log "#{res.statusCode} - #{body}"
 
 module.exports = new Retriever()

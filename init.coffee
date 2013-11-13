@@ -4,6 +4,10 @@ MesInfosIntegrator = require './server/models/mesinfosintegrator'
 MesInfosStatuses = require './server/models/mesinfosstatuses'
 CozyInstance = require './server/models/cozyinstance'
 
+log = ->
+    if process.env.SILENT? and process.env.SILENT is "false"
+        console.log.apply console, arguments
+
 # Create all requests
 module.exports = init = (callback) ->
     all = (doc) -> emit doc._id, doc
@@ -18,13 +22,13 @@ module.exports = init = (callback) ->
                 MesInfosStatuses.getStatuses (err, mis) ->
                     if err?
                         msg = "Internal error occurred, can't load the status"
-                        console.log msg
+                        log msg
                         callback err
                     else
                         unless mis?
-                            console.log "No existing document, creating..."
+                            log "No existing document, creating..."
                             MesInfosStatuses.create {}, (err, mis) ->
-                                console.log "Statuses intialized."
+                                log "Statuses intialized."
                                 callback err
                         else
                             callback err
@@ -38,13 +42,13 @@ module.exports = init = (callback) ->
                 MesInfosIntegrator.getConfig (err, midi) ->
                     if err?
                         msg = "Internal error occurred, can't load the config"
-                        console.log msg
+                        log "#{msg} -- #{err}"
                         callback err
                     else
                         unless midi?
-                            console.log "No existing document, creating..."
+                            log "No existing document, creating..."
                             MesInfosIntegrator.create {}, (err, midi) ->
-                                console.log "MesInfosIntegratorConfig created."
+                                log "MesInfosIntegratorConfig created."
                                 callback err
                         else
                             callback err
@@ -61,7 +65,7 @@ module.exports = init = (callback) ->
 if not module.parent
     init (err) ->
         if err
-            console.log "init failled"
-            console.log err.stack
+            log "init failled"
+            log err.stack
         else
-            console.log "init success"
+            log "init success"

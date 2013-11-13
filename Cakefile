@@ -4,6 +4,7 @@ fs     = require 'fs'
 option '-f' , '--file [FILE*]' , 'test file to run'
 option ''   , '--dir [DIR*]'   , 'directory where to grab test files'
 option '-e' , '--env [ENV]'      , 'run with NODE_ENV=ENV. Default is test'
+option '-v' , '--verbose'      , 'run with SILENT=false (default is true)'
 
 options =  # defaults, will be overwritten by command line options
     file        : no
@@ -52,11 +53,17 @@ runTests = (fileList) ->
             env = "NODE_ENV=#{options.env}"
         else
             env = "NODE_ENV=test"
-        console.log "Running tests with #{env}..."
 
-        command = "#{env} #{command}"
+        if options['verbose']?
+            silent = "SILENT=false"
+        else
+            silent = "SILENT=true"
+
+        console.log "Running tests with #{env} and #{silent}..."
+
+        command = "#{silent} #{env} #{command}"
         command += " #{fileList.join(" ")} "
-        command += " --reporter spec --require should --compilers coffee:coffee-script --colors"
+        command += " --reporter spec --compilers coffee:coffee-script --colors"
         exec command, (err, stdout, stderr) ->
             console.log stdout
             if err
