@@ -34,25 +34,31 @@ class Retriever
         @dataProcessorUrl = url
 
     getData: (partner, controllerCallback) ->
+
         if not process.env.NODE_ENV? or process.env.NODE_ENV is "development"
             @token = "testblabla"
-
         url = "token/#{@token}/data/#{partner}"
         # retrieve the data from the processor
         @clientProcessor.get url, (err, res, body) =>
-            if err
-                if res?.statusCode is 401
-                    log "Authentification error..."
+            if err or res?.statusCode is 401
 
-                msg = "Couldn't get the data of [#{partner}] " + \
-                      "from the Data Processor. -- #{err}"
+                if res?.statusCode is 401
+                    msg = "Authentification error..."
+                else
+                    msg = "Couldn't get the data of [#{partner}] " + \
+                          "from the Data Processor. -- #{err}"
                 log msg
                 controllerCallback msg
             else
                 # we update the "last update" date for the partner
                 MesInfosIntegrator.getConfig (err, midi) =>
-                    if err?
-                        log "Retriever:getData > #{err}"
+                    if err? or not midi?
+                        if not midi?
+                            msg = "Retriever > MesInfosIntegrator not found"
+                        else
+                            msg = "Retriever:getData > #{err}"
+                        log msg
+                        controllerCallback msg
                     else
                         statuses = midi.data_integrator_status
                         statuses[partner] = {} unless statuses[partner]?
