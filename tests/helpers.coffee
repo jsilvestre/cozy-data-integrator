@@ -8,7 +8,7 @@ helpers.options = {}
 helpers.app = null
 
 helpers.startApp = (done) ->
-
+    @timeout 5000
     http = require 'http'
     express = require 'express'
     init = require '../init'
@@ -41,10 +41,10 @@ helpers.stopApp = (done) ->
 # those instances are shared and require cache must be cleaned so we can isolate
 # tests cases
 helpers.clearRequire = ->
-        delete require.cache[require.resolve('../server/initializers/realtime')]
-        delete require.cache[require.resolve('../server/lib/retriever')]
-        delete require.cache[require.resolve('../server/lib/notification-checker')]
-        # todo: clear socket.io callbacks
+    delete require.cache[require.resolve('../server/initializers/realtime')]
+    delete require.cache[require.resolve('../server/lib/retriever')]
+    delete require.cache[require.resolve('../server/lib/notification-checker')]
+    # todo: clear socket.io callbacks
 
 # database helper
 helpers.cleanDB = (done) ->
