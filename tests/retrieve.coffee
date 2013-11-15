@@ -116,3 +116,99 @@ describe "Data retriever management", ->
 
             it "And the process should stop", ->
                 @stub.callCount.should.equal 0
+
+    describe "#putToDataSystem", ->
+
+        before ->
+            @fixturesAdd =  [{action: 'create', doc: {docType: 'randomdoctype', randomfield: 'random value'}}]
+            @fixturesUpdate = [{action: 'update', pkField: 'bla', doc: {docType: 'randomdoctype', 'bla': 'coucou'}}]
+
+        before (done) ->
+            map = """
+                function(doc) {
+                    if(doc.docType.toLowerCase() === 'randomdoctype') {
+                        emit(doc._id, doc);
+                    }
+                }
+            """
+            clientDS.put 'request/randomdoctype/all/', map: map, (err, res, body) ->
+                done()
+
+        describe "When a doc to add is given", ->
+            before helpers.cleanDB
+            before (done) ->
+                @sandbox = sinon.sandbox.create()
+                @spy = @sandbox.spy (err) -> done()
+                retriever.putToDataSystem @fixturesAdd, @spy
+
+            before (done) ->
+                clientDS.post 'request/randomdoctype/all/', {}, (err, res, body) =>
+                    should.not.exist err
+                    should.exist body
+                    @body = body
+                    done()
+
+            after -> @sandbox.restore()
+
+            it "The data should be added to the database", ->
+                @body.length.should.equal 1
+
+            it "The callback should be called", ->
+                @spy.calledOnce.should.be.true
+                isError = @spy.args[0][0]?
+                isError.should.be.false
+
+        describe "When a doc to update is given the first time", ->
+
+            before helpers.cleanDB
+            before (done) ->
+                @sandbox = sinon.sandbox.create()
+                @spy = @sandbox.spy (err) -> done()
+                retriever.putToDataSystem @fixturesUpdate, @spy
+
+            before (done) ->
+                clientDS.post 'request/randomdoctype/all/', {}, (err, res, body) =>
+                    should.not.exist err
+                    should.exist body
+                    @body = body
+                    done()
+
+            after -> @sandbox.restore()
+
+            it "The data should be added to the database", ->
+                @body.length.should.equal 1
+
+            it "The data should be added to the database", ->
+                @body.length.should.equal 1
+
+            it "The callback should be called", ->
+                @spy.calledOnce.should.be.true
+                isError = @spy.args[0][0]?
+                isError.should.be.false
+
+        describe "When a doc to update is given the second time", ->
+
+            before helpers.cleanDB
+            before (done) ->
+                @sandbox = sinon.sandbox.create()
+                @spy = @sandbox.spy (err) -> done()
+                @fixturesUpdate[0].doc.bla = 'coucou2'
+                retriever.putToDataSystem @fixturesUpdate, @spy
+
+            before (done) ->
+                clientDS.post 'request/randomdoctype/all/', {}, (err, res, body) =>
+                    should.not.exist err
+                    should.exist body
+                    @body = body
+                    done()
+
+            after -> @sandbox.restore()
+
+            it "The data should be updated in the database", ->
+                @body.length.should.equal 1
+
+            it "The callback should be called", ->
+                @spy.calledOnce.should.be.true
+                isError = @spy.args[0][0]?
+                isError.should.be.false
+
