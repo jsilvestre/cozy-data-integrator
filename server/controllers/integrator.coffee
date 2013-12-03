@@ -15,7 +15,7 @@ module.exports = (app) ->
                 # execute the HTTP request to processor
                 retriever = require('../lib/retriever.coffee')
                 password = integrator.password
-                retriever.init app.get('processor_url'), password
+                retriever.init password, app.get('processor_url')
                 retriever.getData req.params.partner, (err) ->
                     if err?
                         msg = "Error while retrieving data."
