@@ -1,0 +1,807 @@
+[
+{
+  "docType": "GeolocationLog",
+  "origin": "Orange",
+  "msisdn": "62",
+  "timestamp": "2012-01-05T11:32:01.000Z",
+  "latitude": 48.8575,
+  "longitude": 2.33417,
+  "radius": 356,
+  "snippet": "2012-01-05T11:32:01.000Z - geo:48.8575,2.33417"
+}
+,
+{
+  "docType": "GeolocationLog",
+  "origin": "Orange",
+  "msisdn": "61",
+  "timestamp": "2012-01-05T11:32:02.000Z",
+  "latitude": 48.8761,
+  "longitude": 2.36278,
+  "radius": 346,
+  "snippet": "2012-01-05T11:32:02.000Z - geo:48.8761,2.36278"
+}
+,
+{
+  "docType": "GeolocationLog",
+  "origin": "Orange",
+  "msisdn": "60",
+  "timestamp": "2012-01-05T11:32:03.000Z",
+  "latitude": 48.8894,
+  "longitude": 2.34583,
+  "radius": 149,
+  "snippet": "2012-01-05T11:32:03.000Z - geo:48.8894,2.34583"
+}
+,
+{
+  "docType": "GeolocationLog",
+  "origin": "Orange",
+  "msisdn": "59",
+  "timestamp": "2012-01-05T11:32:04.000Z",
+  "latitude": 48.8231,
+  "longitude": 2.26278,
+  "radius": 6667,
+  "snippet": "2012-01-05T11:32:04.000Z - geo:48.8231,2.26278"
+}
+,
+{
+  "docType": "GeolocationLog",
+  "origin": "Orange",
+  "msisdn": "58",
+  "timestamp": "2012-01-05T11:32:05.000Z",
+  "latitude": 48.8622,
+  "longitude": 2.33889,
+  "radius": 6667,
+  "snippet": "2012-01-05T11:32:05.000Z - geo:48.8622,2.33889"
+}
+,
+{
+  "docType": "GeolocationLog",
+  "origin": "Orange",
+  "msisdn": "57",
+  "timestamp": "2012-01-05T11:32:06.000Z",
+  "latitude": 48.8789,
+  "longitude": 2.32083,
+  "radius": 6667,
+  "snippet": "2012-01-05T11:32:06.000Z - geo:48.8789,2.32083"
+}
+,
+{
+  "docType": "GeolocationLog",
+  "origin": "Orange",
+  "msisdn": "56",
+  "timestamp": "2012-01-05T11:32:07.000Z",
+  "latitude": 48.8064,
+  "longitude": 2.29833,
+  "radius": 10000,
+  "snippet": "2012-01-05T11:32:07.000Z - geo:48.8064,2.29833"
+}
+,
+{
+  "docType": "GeolocationLog",
+  "origin": "Orange",
+  "msisdn": "55",
+  "timestamp": "2012-01-05T11:32:08.000Z",
+  "latitude": 48.8128,
+  "longitude": 2.32889,
+  "radius": 10000,
+  "snippet": "2012-01-05T11:32:08.000Z - geo:48.8128,2.32889"
+}
+,
+{
+  "docType": "GeolocationLog",
+  "origin": "Orange",
+  "msisdn": "54",
+  "timestamp": "2012-01-05T11:32:09.000Z",
+  "latitude": 48.8803,
+  "longitude": 2.27722,
+  "radius": 295,
+  "snippet": "2012-01-05T11:32:09.000Z - geo:48.8803,2.27722"
+}
+,
+{
+  "docType": "GeolocationLog",
+  "origin": "Orange",
+  "msisdn": "53",
+  "timestamp": "2012-01-05T11:32:10.000Z",
+  "latitude": 48.8156,
+  "longitude": 2.30167,
+  "radius": 237,
+  "snippet": "2012-01-05T11:32:10.000Z - geo:48.8156,2.30167"
+}
+,
+{
+  "docType": "GeolocationLog",
+  "origin": "Orange",
+  "msisdn": "52",
+  "timestamp": "2012-01-05T11:32:11.000Z",
+  "deviceState": "ERR Mobile eteint",
+  "snippet": "2012-01-05T11:32:11.000Z - geo:undefined,undefined"
+}
+,
+{
+  "docType": "GeolocationLog",
+  "origin": "Orange",
+  "msisdn": "51",
+  "timestamp": "2012-01-05T11:32:12.000Z",
+  "latitude": 49.0453,
+  "longitude": 2.06972,
+  "radius": 312,
+  "snippet": "2012-01-05T11:32:12.000Z - geo:49.0453,2.06972"
+}
+,
+{
+  "docType": "GeolocationLog",
+  "origin": "Orange",
+  "msisdn": "50",
+  "timestamp": "2012-01-05T11:32:13.000Z",
+  "latitude": 48.8036,
+  "longitude": 2.32028,
+  "radius": 381,
+  "snippet": "2012-01-05T11:32:13.000Z - geo:48.8036,2.32028"
+}
+,
+{
+  "docType": "GeolocationLog",
+  "origin": "Orange",
+  "msisdn": "49",
+  "timestamp": "2012-01-05T11:32:14.000Z",
+  "latitude": 48.8114,
+  "longitude": 2.32806,
+  "radius": 6667,
+  "snippet": "2012-01-05T11:32:14.000Z - geo:48.8114,2.32806"
+}
+,
+{
+  "docType": "GeolocationLog",
+  "origin": "Orange",
+  "msisdn": "48",
+  "timestamp": "2012-01-05T11:31:01.000Z",
+  "latitude": 48.8114,
+  "longitude": 2.32806,
+  "radius": 10000,
+  "snippet": "2012-01-05T11:31:01.000Z - geo:48.8114,2.32806"
+}
+,
+{
+  "docType": "GeolocationLog",
+  "origin": "Orange",
+  "msisdn": "47",
+  "timestamp": "2012-01-05T11:31:02.000Z",
+  "latitude": 48.8361,
+  "longitude": 2.30444,
+  "radius": 295,
+  "snippet": "2012-01-05T11:31:02.000Z - geo:48.8361,2.30444"
+}
+,
+{
+  "docType": "GeolocationLog",
+  "origin": "Orange",
+  "msisdn": "46",
+  "timestamp": "2012-01-05T11:31:03.000Z",
+  "latitude": 48.8064,
+  "longitude": 2.29833,
+  "radius": 10000,
+  "snippet": "2012-01-05T11:31:03.000Z - geo:48.8064,2.29833"
+}
+,
+{
+  "docType": "GeolocationLog",
+  "origin": "Orange",
+  "msisdn": "45",
+  "timestamp": "2012-01-05T11:31:04.000Z",
+  "latitude": 48.8361,
+  "longitude": 2.30444,
+  "radius": 295,
+  "snippet": "2012-01-05T11:31:04.000Z - geo:48.8361,2.30444"
+}
+,
+{
+  "docType": "GeolocationLog",
+  "origin": "Orange",
+  "msisdn": "44",
+  "timestamp": "2012-01-05T11:31:05.000Z",
+  "latitude": 48.8386,
+  "longitude": 2.38,
+  "radius": 189,
+  "snippet": "2012-01-05T11:31:05.000Z - geo:48.8386,2.38"
+}
+,
+{
+  "docType": "GeolocationLog",
+  "origin": "Orange",
+  "msisdn": "43",
+  "timestamp": "2012-01-05T11:31:06.000Z",
+  "latitude": 48.8289,
+  "longitude": 2.27611,
+  "radius": 393,
+  "snippet": "2012-01-05T11:31:06.000Z - geo:48.8289,2.27611"
+}
+,
+{
+  "docType": "GeolocationLog",
+  "origin": "Orange",
+  "msisdn": "42",
+  "timestamp": "2012-01-05T11:31:07.000Z",
+  "latitude": 48.8356,
+  "longitude": 2.30639,
+  "radius": 10000,
+  "snippet": "2012-01-05T11:31:07.000Z - geo:48.8356,2.30639"
+}
+,
+{
+  "docType": "GeolocationLog",
+  "origin": "Orange",
+  "msisdn": "41",
+  "timestamp": "2012-01-05T11:31:08.000Z",
+  "latitude": 48.8114,
+  "longitude": 2.33306,
+  "radius": 422,
+  "snippet": "2012-01-05T11:31:08.000Z - geo:48.8114,2.33306"
+}
+,
+{
+  "docType": "GeolocationLog",
+  "origin": "Orange",
+  "msisdn": "40",
+  "timestamp": "2012-01-05T11:30:01.000Z",
+  "latitude": 48.8175,
+  "longitude": 2.37694,
+  "radius": 6667,
+  "snippet": "2012-01-05T11:30:01.000Z - geo:48.8175,2.37694"
+}
+,
+{
+  "docType": "GeolocationLog",
+  "origin": "Orange",
+  "msisdn": "39",
+  "timestamp": "2012-01-05T11:30:02.000Z",
+  "latitude": 48.8764,
+  "longitude": 2.38472,
+  "radius": 6667,
+  "snippet": "2012-01-05T11:30:02.000Z - geo:48.8764,2.38472"
+}
+,
+{
+  "docType": "GeolocationLog",
+  "origin": "Orange",
+  "msisdn": "38",
+  "timestamp": "2012-01-05T11:30:03.000Z",
+  "latitude": 48.8106,
+  "longitude": 2.3275,
+  "radius": 10000,
+  "snippet": "2012-01-05T11:30:03.000Z - geo:48.8106,2.3275"
+}
+,
+{
+  "docType": "GeolocationLog",
+  "origin": "Orange",
+  "msisdn": "37",
+  "timestamp": "2012-01-05T11:30:04.000Z",
+  "latitude": 48.8106,
+  "longitude": 2.3275,
+  "radius": 10000,
+  "snippet": "2012-01-05T11:30:04.000Z - geo:48.8106,2.3275"
+}
+,
+{
+  "docType": "GeolocationLog",
+  "origin": "Orange",
+  "msisdn": "36",
+  "timestamp": "2012-01-05T11:30:05.000Z",
+  "latitude": 48.9506,
+  "longitude": 2.13389,
+  "radius": 732,
+  "snippet": "2012-01-05T11:30:05.000Z - geo:48.9506,2.13389"
+}
+,
+{
+  "docType": "GeolocationLog",
+  "origin": "Orange",
+  "msisdn": "35",
+  "timestamp": "2012-01-05T11:30:06.000Z",
+  "deviceState": "ERR Mobile eteint",
+  "snippet": "2012-01-05T11:30:06.000Z - geo:undefined,undefined"
+}
+,
+{
+  "docType": "GeolocationLog",
+  "origin": "Orange",
+  "msisdn": "34",
+  "timestamp": "2012-01-05T11:30:07.000Z",
+  "latitude": 48.8064,
+  "longitude": 2.29833,
+  "radius": 10000,
+  "snippet": "2012-01-05T11:30:07.000Z - geo:48.8064,2.29833"
+}
+,
+{
+  "docType": "GeolocationLog",
+  "origin": "Orange",
+  "msisdn": "33",
+  "timestamp": "2012-01-05T11:30:08.000Z",
+  "latitude": 48.8789,
+  "longitude": 2.32083,
+  "radius": 6667,
+  "snippet": "2012-01-05T11:30:08.000Z - geo:48.8789,2.32083"
+}
+,
+{
+  "docType": "GeolocationLog",
+  "origin": "Orange",
+  "msisdn": "32",
+  "timestamp": "2012-01-05T11:30:09.000Z",
+  "latitude": 48.8789,
+  "longitude": 2.32083,
+  "radius": 6667,
+  "snippet": "2012-01-05T11:30:09.000Z - geo:48.8789,2.32083"
+}
+,
+{
+  "docType": "GeolocationLog",
+  "origin": "Orange",
+  "msisdn": "31",
+  "timestamp": "2012-01-05T11:30:10.000Z",
+  "latitude": 48.8058,
+  "longitude": 2.29972,
+  "radius": 304,
+  "snippet": "2012-01-05T11:30:10.000Z - geo:48.8058,2.29972"
+}
+,
+{
+  "docType": "GeolocationLog",
+  "origin": "Orange",
+  "msisdn": "30",
+  "timestamp": "2012-01-05T11:30:11.000Z",
+  "latitude": 48.8608,
+  "longitude": 2.35111,
+  "radius": 94,
+  "snippet": "2012-01-05T11:30:11.000Z - geo:48.8608,2.35111"
+}
+,
+{
+  "docType": "GeolocationLog",
+  "origin": "Orange",
+  "msisdn": "29",
+  "timestamp": "2012-01-05T11:30:12.000Z",
+  "latitude": 48.8261,
+  "longitude": 2.29722,
+  "radius": 230,
+  "snippet": "2012-01-05T11:30:12.000Z - geo:48.8261,2.29722"
+}
+,
+{
+  "docType": "GeolocationLog",
+  "origin": "Orange",
+  "msisdn": "28",
+  "timestamp": "2012-01-05T11:29:01.000Z",
+  "latitude": 48.8064,
+  "longitude": 2.29833,
+  "radius": 10000,
+  "snippet": "2012-01-05T11:29:01.000Z - geo:48.8064,2.29833"
+}
+,
+{
+  "docType": "GeolocationLog",
+  "origin": "Orange",
+  "msisdn": "27",
+  "timestamp": "2012-01-05T11:29:02.000Z",
+  "latitude": 48.8514,
+  "longitude": 2.26667,
+  "radius": 6667,
+  "snippet": "2012-01-05T11:29:02.000Z - geo:48.8514,2.26667"
+}
+,
+{
+  "docType": "GeolocationLog",
+  "origin": "Orange",
+  "msisdn": "26",
+  "timestamp": "2012-01-05T11:29:03.000Z",
+  "latitude": 48.8128,
+  "longitude": 2.32889,
+  "radius": 10000,
+  "snippet": "2012-01-05T11:29:03.000Z - geo:48.8128,2.32889"
+}
+,
+{
+  "docType": "GeolocationLog",
+  "origin": "Orange",
+  "msisdn": "62",
+  "timestamp": "2012-01-05T11:32:01.000Z",
+  "latitude": 48.8575,
+  "longitude": 2.33417,
+  "radius": 356,
+  "snippet": "2012-01-05T11:32:01.000Z - geo:48.8575,2.33417"
+}
+,
+{
+  "docType": "GeolocationLog",
+  "origin": "Orange",
+  "msisdn": "61",
+  "timestamp": "2012-01-05T11:32:02.000Z",
+  "latitude": 48.8761,
+  "longitude": 2.36278,
+  "radius": 346,
+  "snippet": "2012-01-05T11:32:02.000Z - geo:48.8761,2.36278"
+}
+,
+{
+  "docType": "GeolocationLog",
+  "origin": "Orange",
+  "msisdn": "60",
+  "timestamp": "2012-01-05T11:32:03.000Z",
+  "latitude": 48.8894,
+  "longitude": 2.34583,
+  "radius": 149,
+  "snippet": "2012-01-05T11:32:03.000Z - geo:48.8894,2.34583"
+}
+,
+{
+  "docType": "GeolocationLog",
+  "origin": "Orange",
+  "msisdn": "59",
+  "timestamp": "2012-01-05T11:32:04.000Z",
+  "latitude": 48.8231,
+  "longitude": 2.26278,
+  "radius": 6667,
+  "snippet": "2012-01-05T11:32:04.000Z - geo:48.8231,2.26278"
+}
+,
+{
+  "docType": "GeolocationLog",
+  "origin": "Orange",
+  "msisdn": "58",
+  "timestamp": "2012-01-05T11:32:05.000Z",
+  "latitude": 48.8622,
+  "longitude": 2.33889,
+  "radius": 6667,
+  "snippet": "2012-01-05T11:32:05.000Z - geo:48.8622,2.33889"
+}
+,
+{
+  "docType": "GeolocationLog",
+  "origin": "Orange",
+  "msisdn": "57",
+  "timestamp": "2012-01-05T11:32:06.000Z",
+  "latitude": 48.8789,
+  "longitude": 2.32083,
+  "radius": 6667,
+  "snippet": "2012-01-05T11:32:06.000Z - geo:48.8789,2.32083"
+}
+,
+{
+  "docType": "GeolocationLog",
+  "origin": "Orange",
+  "msisdn": "56",
+  "timestamp": "2012-01-05T11:32:07.000Z",
+  "latitude": 48.8064,
+  "longitude": 2.29833,
+  "radius": 10000,
+  "snippet": "2012-01-05T11:32:07.000Z - geo:48.8064,2.29833"
+}
+,
+{
+  "docType": "GeolocationLog",
+  "origin": "Orange",
+  "msisdn": "55",
+  "timestamp": "2012-01-05T11:32:08.000Z",
+  "latitude": 48.8128,
+  "longitude": 2.32889,
+  "radius": 10000,
+  "snippet": "2012-01-05T11:32:08.000Z - geo:48.8128,2.32889"
+}
+,
+{
+  "docType": "GeolocationLog",
+  "origin": "Orange",
+  "msisdn": "54",
+  "timestamp": "2012-01-05T11:32:09.000Z",
+  "latitude": 48.8803,
+  "longitude": 2.27722,
+  "radius": 295,
+  "snippet": "2012-01-05T11:32:09.000Z - geo:48.8803,2.27722"
+}
+,
+{
+  "docType": "GeolocationLog",
+  "origin": "Orange",
+  "msisdn": "53",
+  "timestamp": "2012-01-05T11:32:10.000Z",
+  "latitude": 48.8156,
+  "longitude": 2.30167,
+  "radius": 237,
+  "snippet": "2012-01-05T11:32:10.000Z - geo:48.8156,2.30167"
+}
+,
+{
+  "docType": "GeolocationLog",
+  "origin": "Orange",
+  "msisdn": "52",
+  "timestamp": "2012-01-05T11:32:11.000Z",
+  "deviceState": "ERR Mobile eteint",
+  "snippet": "2012-01-05T11:32:11.000Z - geo:undefined,undefined"
+}
+,
+{
+  "docType": "GeolocationLog",
+  "origin": "Orange",
+  "msisdn": "51",
+  "timestamp": "2012-01-05T11:32:12.000Z",
+  "latitude": 49.0453,
+  "longitude": 2.06972,
+  "radius": 312,
+  "snippet": "2012-01-05T11:32:12.000Z - geo:49.0453,2.06972"
+}
+,
+{
+  "docType": "GeolocationLog",
+  "origin": "Orange",
+  "msisdn": "50",
+  "timestamp": "2012-01-05T11:32:13.000Z",
+  "latitude": 48.8036,
+  "longitude": 2.32028,
+  "radius": 381,
+  "snippet": "2012-01-05T11:32:13.000Z - geo:48.8036,2.32028"
+}
+,
+{
+  "docType": "GeolocationLog",
+  "origin": "Orange",
+  "msisdn": "49",
+  "timestamp": "2012-01-05T11:32:14.000Z",
+  "latitude": 48.8114,
+  "longitude": 2.32806,
+  "radius": 6667,
+  "snippet": "2012-01-05T11:32:14.000Z - geo:48.8114,2.32806"
+}
+,
+{
+  "docType": "GeolocationLog",
+  "origin": "Orange",
+  "msisdn": "48",
+  "timestamp": "2012-01-05T11:31:01.000Z",
+  "latitude": 48.8114,
+  "longitude": 2.32806,
+  "radius": 10000,
+  "snippet": "2012-01-05T11:31:01.000Z - geo:48.8114,2.32806"
+}
+,
+{
+  "docType": "GeolocationLog",
+  "origin": "Orange",
+  "msisdn": "47",
+  "timestamp": "2012-01-05T11:31:02.000Z",
+  "latitude": 48.8361,
+  "longitude": 2.30444,
+  "radius": 295,
+  "snippet": "2012-01-05T11:31:02.000Z - geo:48.8361,2.30444"
+}
+,
+{
+  "docType": "GeolocationLog",
+  "origin": "Orange",
+  "msisdn": "46",
+  "timestamp": "2012-01-05T11:31:03.000Z",
+  "latitude": 48.8064,
+  "longitude": 2.29833,
+  "radius": 10000,
+  "snippet": "2012-01-05T11:31:03.000Z - geo:48.8064,2.29833"
+}
+,
+{
+  "docType": "GeolocationLog",
+  "origin": "Orange",
+  "msisdn": "45",
+  "timestamp": "2012-01-05T11:31:04.000Z",
+  "latitude": 48.8361,
+  "longitude": 2.30444,
+  "radius": 295,
+  "snippet": "2012-01-05T11:31:04.000Z - geo:48.8361,2.30444"
+}
+,
+{
+  "docType": "GeolocationLog",
+  "origin": "Orange",
+  "msisdn": "44",
+  "timestamp": "2012-01-05T11:31:05.000Z",
+  "latitude": 48.8386,
+  "longitude": 2.38,
+  "radius": 189,
+  "snippet": "2012-01-05T11:31:05.000Z - geo:48.8386,2.38"
+}
+,
+{
+  "docType": "GeolocationLog",
+  "origin": "Orange",
+  "msisdn": "43",
+  "timestamp": "2012-01-05T11:31:06.000Z",
+  "latitude": 48.8289,
+  "longitude": 2.27611,
+  "radius": 393,
+  "snippet": "2012-01-05T11:31:06.000Z - geo:48.8289,2.27611"
+}
+,
+{
+  "docType": "GeolocationLog",
+  "origin": "Orange",
+  "msisdn": "42",
+  "timestamp": "2012-01-05T11:31:07.000Z",
+  "latitude": 48.8356,
+  "longitude": 2.30639,
+  "radius": 10000,
+  "snippet": "2012-01-05T11:31:07.000Z - geo:48.8356,2.30639"
+}
+,
+{
+  "docType": "GeolocationLog",
+  "origin": "Orange",
+  "msisdn": "41",
+  "timestamp": "2012-01-05T11:31:08.000Z",
+  "latitude": 48.8114,
+  "longitude": 2.33306,
+  "radius": 422,
+  "snippet": "2012-01-05T11:31:08.000Z - geo:48.8114,2.33306"
+}
+,
+{
+  "docType": "GeolocationLog",
+  "origin": "Orange",
+  "msisdn": "40",
+  "timestamp": "2012-01-05T11:30:01.000Z",
+  "latitude": 48.8175,
+  "longitude": 2.37694,
+  "radius": 6667,
+  "snippet": "2012-01-05T11:30:01.000Z - geo:48.8175,2.37694"
+}
+,
+{
+  "docType": "GeolocationLog",
+  "origin": "Orange",
+  "msisdn": "39",
+  "timestamp": "2012-01-05T11:30:02.000Z",
+  "latitude": 48.8764,
+  "longitude": 2.38472,
+  "radius": 6667,
+  "snippet": "2012-01-05T11:30:02.000Z - geo:48.8764,2.38472"
+}
+,
+{
+  "docType": "GeolocationLog",
+  "origin": "Orange",
+  "msisdn": "38",
+  "timestamp": "2012-01-05T11:30:03.000Z",
+  "latitude": 48.8106,
+  "longitude": 2.3275,
+  "radius": 10000,
+  "snippet": "2012-01-05T11:30:03.000Z - geo:48.8106,2.3275"
+}
+,
+{
+  "docType": "GeolocationLog",
+  "origin": "Orange",
+  "msisdn": "37",
+  "timestamp": "2012-01-05T11:30:04.000Z",
+  "latitude": 48.8106,
+  "longitude": 2.3275,
+  "radius": 10000,
+  "snippet": "2012-01-05T11:30:04.000Z - geo:48.8106,2.3275"
+}
+,
+{
+  "docType": "GeolocationLog",
+  "origin": "Orange",
+  "msisdn": "36",
+  "timestamp": "2012-01-05T11:30:05.000Z",
+  "latitude": 48.9506,
+  "longitude": 2.13389,
+  "radius": 732,
+  "snippet": "2012-01-05T11:30:05.000Z - geo:48.9506,2.13389"
+}
+,
+{
+  "docType": "GeolocationLog",
+  "origin": "Orange",
+  "msisdn": "35",
+  "timestamp": "2012-01-05T11:30:06.000Z",
+  "deviceState": "ERR Mobile eteint",
+  "snippet": "2012-01-05T11:30:06.000Z - geo:undefined,undefined"
+}
+,
+{
+  "docType": "GeolocationLog",
+  "origin": "Orange",
+  "msisdn": "34",
+  "timestamp": "2012-01-05T11:30:07.000Z",
+  "latitude": 48.8064,
+  "longitude": 2.29833,
+  "radius": 10000,
+  "snippet": "2012-01-05T11:30:07.000Z - geo:48.8064,2.29833"
+}
+,
+{
+  "docType": "GeolocationLog",
+  "origin": "Orange",
+  "msisdn": "33",
+  "timestamp": "2012-01-05T11:30:08.000Z",
+  "latitude": 48.8789,
+  "longitude": 2.32083,
+  "radius": 6667,
+  "snippet": "2012-01-05T11:30:08.000Z - geo:48.8789,2.32083"
+}
+,
+{
+  "docType": "GeolocationLog",
+  "origin": "Orange",
+  "msisdn": "32",
+  "timestamp": "2012-01-05T11:30:09.000Z",
+  "latitude": 48.8789,
+  "longitude": 2.32083,
+  "radius": 6667,
+  "snippet": "2012-01-05T11:30:09.000Z - geo:48.8789,2.32083"
+}
+,
+{
+  "docType": "GeolocationLog",
+  "origin": "Orange",
+  "msisdn": "31",
+  "timestamp": "2012-01-05T11:30:10.000Z",
+  "latitude": 48.8058,
+  "longitude": 2.29972,
+  "radius": 304,
+  "snippet": "2012-01-05T11:30:10.000Z - geo:48.8058,2.29972"
+}
+,
+{
+  "docType": "GeolocationLog",
+  "origin": "Orange",
+  "msisdn": "30",
+  "timestamp": "2012-01-05T11:30:11.000Z",
+  "latitude": 48.8608,
+  "longitude": 2.35111,
+  "radius": 94,
+  "snippet": "2012-01-05T11:30:11.000Z - geo:48.8608,2.35111"
+}
+,
+{
+  "docType": "GeolocationLog",
+  "origin": "Orange",
+  "msisdn": "29",
+  "timestamp": "2012-01-05T11:30:12.000Z",
+  "latitude": 48.8261,
+  "longitude": 2.29722,
+  "radius": 230,
+  "snippet": "2012-01-05T11:30:12.000Z - geo:48.8261,2.29722"
+}
+,
+{
+  "docType": "GeolocationLog",
+  "origin": "Orange",
+  "msisdn": "28",
+  "timestamp": "2012-01-05T11:29:01.000Z",
+  "latitude": 48.8064,
+  "longitude": 2.29833,
+  "radius": 10000,
+  "snippet": "2012-01-05T11:29:01.000Z - geo:48.8064,2.29833"
+}
+,
+{
+  "docType": "GeolocationLog",
+  "origin": "Orange",
+  "msisdn": "27",
+  "timestamp": "2012-01-05T11:29:02.000Z",
+  "latitude": 48.8514,
+  "longitude": 2.26667,
+  "radius": 6667,
+  "snippet": "2012-01-05T11:29:02.000Z - geo:48.8514,2.26667"
+}
+,
+{
+  "docType": "GeolocationLog",
+  "origin": "Orange",
+  "msisdn": "26",
+  "timestamp": "2012-01-05T11:29:03.000Z",
+  "latitude": 48.8128,
+  "longitude": 2.32889,
+  "radius": 10000,
+  "snippet": "2012-01-05T11:29:03.000Z - geo:48.8128,2.32889"
+}
+]

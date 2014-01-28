@@ -3,6 +3,10 @@ async = require "async"
 MesInfosIntegrator = require './server/models/mesinfosintegrator'
 MesInfosStatuses = require './server/models/mesinfosstatuses'
 CozyInstance = require './server/models/cozyinstance'
+Receipt = require './server/models/receipt'
+GeolocationLog = require './server/models/geoloc'
+ReceiptDetail = require './server/models/receipt_details'
+PhoneCommunicationLog = require './server/models/cra'
 
 log = ->
     if process.env.SILENT? and process.env.SILENT is "false"
@@ -11,6 +15,26 @@ log = ->
 # Create all requests
 module.exports = init = (callback) ->
     all = (doc) -> emit doc._id, doc
+
+    allLikeReceipt = (doc) -> emit doc.receiptId, doc
+    allLikeGeoloc = (doc) -> emit doc.timestamp, doc
+    allLikeReceiptDetail = (doc) ->
+        emit [doc.ticketId, doc.order, doc.barcode], doc
+    allLikeCRA = (doc) ->
+        key = [
+            doc.direction
+            doc.timestamp
+            doc.subscriberNumber
+            doc.correspondantNumber
+            doc.chipCount
+            doc.chipType
+            doc.type
+            doc.imsi
+            doc.imei
+            doc.latitude
+            doc.longitude
+        ]
+        emit key, doc
 
     prepareRequests = []
     # Create request and the document if not existing
@@ -56,6 +80,38 @@ module.exports = init = (callback) ->
     # Create request and the document if not existing
     prepareRequests.push (callback) ->
         CozyInstance.defineRequest 'all', all, (err) ->
+            callback err
+
+    prepareRequests.push (callback) ->
+        Receipt.defineRequest 'all', all, (err) ->
+            callback err
+
+    prepareRequests.push (callback) ->
+        Receipt.defineRequest 'allLike', allLikeReceipt, (err) ->
+            callback err
+
+    prepareRequests.push (callback) ->
+        GeolocationLog.defineRequest 'all', all, (err) ->
+            callback err
+
+    prepareRequests.push (callback) ->
+        GeolocationLog.defineRequest 'allLike', allLikeGeoloc, (err) ->
+            callback err
+
+    prepareRequests.push (callback) ->
+        ReceiptDetail.defineRequest 'all', all, (err) ->
+            callback err
+
+    prepareRequests.push (callback) ->
+        ReceiptDetail.defineRequest 'allLike', allLikeReceiptDetail, (err) ->
+            callback err
+
+    prepareRequests.push (callback) ->
+        PhoneCommunicationLog.defineRequest 'all', all, (err) ->
+            callback err
+
+    prepareRequests.push (callback) ->
+        PhoneCommunicationLog.defineRequest 'allLike', allLikeCRA, (err) ->
             callback err
 
     async.series prepareRequests, (err, results) ->
