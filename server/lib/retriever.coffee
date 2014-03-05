@@ -156,6 +156,8 @@ class Retriever
         console.log "Sending tracks to the processor..."
         url = "token/#{@token}/tracks/"
         @clientProcessor.post url, tracks, (err, res, body) ->
+            error = "#{res.statusCode} -- #{body}" if res?.statusCode isnt 200
+            err = err or error
             if err?
                 console.log "Send tracks -- #{err}"
             else
