@@ -44,10 +44,10 @@ module.exports.poll = ->
 
     delta =  Math.floor(Math.random() * 2 * 60)
     now = moment()
-    patchTime = now.clone().add(6, 'hours')
+    patchTime = now.clone().add(2, 'hours')
                         .minutes(delta)
                         .seconds(0)
-    patchTime = now.clone().add(5, 'seconds') # dev mode
+    #patchTime = now.clone().add(5, 'seconds') # dev mode
     setTimeout(
         -> transmit()
     , patchTime.diff(now))
