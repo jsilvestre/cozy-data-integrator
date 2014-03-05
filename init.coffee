@@ -7,6 +7,7 @@ Receipt = require './server/models/receipt'
 GeolocationLog = require './server/models/geoloc'
 ReceiptDetail = require './server/models/receipt_details'
 PhoneCommunicationLog = require './server/models/cra'
+UseTracker = require './server/models/usetracker'
 
 log = ->
     if process.env.SILENT? and process.env.SILENT is "false"
@@ -35,6 +36,8 @@ module.exports = init = (callback) ->
             doc.longitude
         ]
         emit key, doc
+
+    nonSent = (doc) -> emit doc._id, doc unless doc.sent? and doc.sent
 
     prepareRequests = []
     # Create request and the document if not existing
@@ -112,6 +115,10 @@ module.exports = init = (callback) ->
 
     prepareRequests.push (callback) ->
         PhoneCommunicationLog.defineRequest 'allLike', allLikeCRA, (err) ->
+            callback err
+
+    prepareRequests.push (callback) ->
+        UseTracker.defineRequest 'nonSent', nonSent, (err) ->
             callback err
 
     async.series prepareRequests, (err, results) ->

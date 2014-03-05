@@ -5,6 +5,7 @@ router = require './server/router'
 configure = require './server/config'
 {realtimeInitializer} = require './server/initializers/realtime'
 patch = require './server/patchs/deduplicate'
+useTracker = require './server/lib/use-tracker'
 
 module.exports = app = express()
 configure app
@@ -24,3 +25,4 @@ if not module.parent
                 host, port, app.get 'env'
             realtimeInitializer app, server
             patch.apply()
+            useTracker.poll()

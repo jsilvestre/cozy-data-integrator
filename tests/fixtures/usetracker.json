@@ -1,0 +1,37 @@
+[
+{
+    "docType": "UseTracker",
+    "app": "calendar",
+    "dateStart": "2013-11-15T00:00:00.000Z",
+    "dateEnd": "2013-11-15T00:30:00.000Z",
+    "duration": 1800
+},
+{
+    "docType": "UseTracker",
+    "app": "calendar",
+    "dateStart": "2013-11-15T12:20:00.000Z",
+    "dateEnd": "2013-11-15T12:28:00.000Z",
+    "duration": 480
+},
+{
+    "docType": "UseTracker",
+    "app": "contacts",
+    "dateStart": "2013-11-15T11:15:00.000Z",
+    "dateEnd": "2013-11-15T11:20:00.000Z",
+    "duration": 300
+},
+{
+    "docType": "UseTracker",
+    "app": "contacts",
+    "dateStart": "2013-11-15T22:00:00.000Z",
+    "dateEnd": "2013-11-15T22:10:00.000Z",
+    "duration": 600
+},
+{
+    "docType": "UseTracker",
+    "app": "calendar",
+    "dateStart": "2013-11-15T17:00:00.000Z",
+    "dateEnd": "2013-11-15T17:10:00.000Z",
+    "duration": 600
+}
+]

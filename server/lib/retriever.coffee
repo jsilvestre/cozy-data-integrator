@@ -152,4 +152,15 @@ class Retriever
             else
                 log "#{res.statusCode} - #{body}"
 
+    sendTracks: (tracks, callback) ->
+        log "Sending tracks to the processor..."
+        url = "token/#{@token}/tracks/"
+        @clientProcessor.post url, tracks, (err, res, body) ->
+            if err?
+                log "Send tracks: #{err}"
+            else
+                log "Send tracks -- #{res.statusCode} # #{body}"
+
+            callback err
+
 module.exports = new Retriever()
