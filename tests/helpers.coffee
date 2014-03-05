@@ -8,7 +8,7 @@ helpers.options = {}
 helpers.app = null
 
 helpers.startApp = (done) ->
-    @timeout 5000
+    @timeout 10000
     http = require 'http'
     express = require 'express'
     init = require '../init'
@@ -34,9 +34,12 @@ helpers.startApp = (done) ->
             realtimeInitializer @app, server, done
 
 helpers.stopApp = (done) ->
-    @app.server.close ->
-        helpers.clearRequire()
-        done()
+    @timeout 3000
+    setTimeout =>
+        @app.server.close ->
+            helpers.clearRequire()
+            done()
+    , 1000
 
 # those instances are shared and require cache must be cleaned so we can isolate
 # tests cases
@@ -48,8 +51,10 @@ helpers.clearRequire = ->
 
 # database helper
 helpers.cleanDB = (done) ->
+    @timeout 10000
     fixtures.resetDatabase callback: done
 helpers.cleanDBWithRequests = (done) ->
+    @timeout 10000
     fixtures.resetDatabase removeAllViews: true, callback: done
 
 module.exports = helpers

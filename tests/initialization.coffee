@@ -95,8 +95,8 @@ describe "Application Initialization", ->
                     done()
 
             it "We wait a little so the realtime callback can do its job", (done) ->
-                @timeout 1000
-                setTimeout done, 300
+                @timeout 2000
+                setTimeout done, 1000
 
             it "Then the cozy_registered status should be updated", (done) ->
                 Statuses = require '../server/models/mesinfosstatuses'

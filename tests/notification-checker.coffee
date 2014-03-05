@@ -49,7 +49,7 @@ describe "Notification checker", ->
 
     describe "When checkNotifications is called", ->
 
-        before (done) -> fixtures.load callback: done
+        before (done) -> fixtures.load callback: done, dirPath: './tests/fixtures/fixtures.json'
 
         before ->
             @sandbox = sinon.sandbox.create()

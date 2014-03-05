@@ -25,7 +25,7 @@ describe "Integrator Configuration (Model)", ->
 
     before helpers.cleanDBWithRequests
     before helpers.startApp
-    before (done) -> fixtures.load callback: done
+    before (done) -> fixtures.load callback: done, dirPath: './tests/fixtures/fixtures.json'
     after helpers.stopApp
     after helpers.cleanDBWithRequests
     after -> @sandbox.restore()
