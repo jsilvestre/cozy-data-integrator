@@ -69,8 +69,7 @@ module.exports = (app) ->
                 opts =
                     isGoogleMarkedAsRegistered: rs.google_oauth_registered
                     statuses: displayStatuses
-                res.render 'index.jade', opts, (err, html) ->
-                    res.send 200, html
+                res.render 'index.jade', opts
 
 
     disableGoogleNotification: (req, res) ->
