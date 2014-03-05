@@ -27,10 +27,11 @@ transmit = ->
             console.log err if err?
 
             if tracks.length > 0
-                console.log "got tracks to transmit", tracks.length
+                console.log "\tGot #{tracks.length} tracks to transmit."
 
                 sendTracks tracks, (err) ->
                     if err?
+                        console.log "Error while sending trackers -- #{err}"
                         endOfTransmission()
                     else
                         async.each tracks, markAsSent, (err) ->
