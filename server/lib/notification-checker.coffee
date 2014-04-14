@@ -2,7 +2,7 @@ async = require "async"
 
 NotificationHelper = require 'cozy-notifications-helper'
 Notifications = new NotificationHelper 'collecteur-mesinfos'
-MesInfosIntegrator = require '../models/mesinfosintegrator'
+MesInfosIntegrator = require '../models/integrator'
 
 log = ->
     if process.env.SILENT? and process.env.SILENT is "false"

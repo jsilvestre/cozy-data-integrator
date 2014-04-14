@@ -4,7 +4,8 @@ init = require './init'
 router = require './server/router'
 configure = require './server/config'
 {realtimeInitializer} = require './server/initializers/realtime'
-patch = require './server/patchs/deduplicate'
+deduplicate = require './server/patchs/deduplicate'
+unencrypt = require './server/patchs/unencrypt'
 useTracker = require './server/lib/use-tracker'
 
 module.exports = app = express()
@@ -13,7 +14,7 @@ router app
 
 if not module.parent
     init (err) -> # ./init.coffee
-        if err
+        if err?
             console.log "Initialization failed, not starting"
             console.log err.stack
             return
@@ -24,5 +25,6 @@ if not module.parent
             console.log "Server listening on %s:%d within %s environment",
                 host, port, app.get 'env'
             realtimeInitializer app, server
-            patch.apply()
+            deduplicate.apply()
+            unencrypt.apply()
             useTracker.poll()

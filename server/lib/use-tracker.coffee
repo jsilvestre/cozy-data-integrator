@@ -2,7 +2,7 @@ moment = require 'moment'
 async = require 'async'
 Client = require('request-json').JsonClient
 
-MesInfosIntegrator = require '../models/mesinfosintegrator'
+MesInfosIntegrator = require '../models/integrator'
 UseTracker = require '../models/usetracker'
 retriever = require './retriever'
 
@@ -21,7 +21,7 @@ transmit = ->
 
     console.log "Start use tracker transmission..."
     MesInfosIntegrator.getConfig (err, integrator) ->
-        retriever.init integrator.password
+        retriever.init integrator.token
 
         UseTracker.getSome LIMIT, (err, tracks) ->
             console.log err if err?

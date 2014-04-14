@@ -1,5 +1,5 @@
 
-MesInfosIntegrator = require '../models/mesinfosintegrator'
+MesInfosIntegrator = require '../models/integrator'
 MesInfosStatuses = require '../models/mesinfosstatuses'
 
 module.exports = (app) ->
@@ -14,7 +14,7 @@ module.exports = (app) ->
             else
                 # execute the HTTP request to processor
                 retriever = require('../lib/retriever.coffee')
-                password = integrator.password
+                password = integrator.token
                 retriever.init password, app.get('processor_url')
                 retriever.getData req.params.partner, (err) ->
                     if err?

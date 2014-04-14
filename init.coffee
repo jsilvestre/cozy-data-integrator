@@ -1,6 +1,7 @@
 async = require "async"
 
 MesInfosIntegrator = require './server/models/mesinfosintegrator'
+IntegratorConfig = require './server/models/integrator'
 MesInfosStatuses = require './server/models/mesinfosstatuses'
 CozyInstance = require './server/models/cozyinstance'
 Receipt = require './server/models/receipt'
@@ -10,7 +11,7 @@ PhoneCommunicationLog = require './server/models/cra'
 UseTracker = require './server/models/usetracker'
 
 log = ->
-    if process.env.SILENT? and process.env.SILENT is "false"
+    unless process.env.SILENT? and process.env.SILENT is "true"
         console.log.apply console, arguments
 
 # Create all requests
@@ -60,13 +61,17 @@ module.exports = init = (callback) ->
                         else
                             callback err
 
-    # Create request and the document if not existing
     prepareRequests.push (callback) ->
         MesInfosIntegrator.defineRequest 'all', all, (err) ->
+            callback err
+
+    # Create request and the document if not existing
+    prepareRequests.push (callback) ->
+        IntegratorConfig.defineRequest 'all', all, (err) ->
             if err
                 callback err
             else
-                MesInfosIntegrator.getConfig (err, midi) ->
+                IntegratorConfig.getConfig (err, midi) ->
                     if err?
                         msg = "Internal error occurred, can't load the config"
                         log "#{msg} -- #{err}"
@@ -74,13 +79,12 @@ module.exports = init = (callback) ->
                     else
                         unless midi?
                             log "No existing document, creating..."
-                            MesInfosIntegrator.create {}, (err, midi) ->
+                            IntegratorConfig.create {}, (err, midi) ->
                                 log "MesInfosIntegratorConfig created."
                                 callback err
                         else
                             callback err
 
-    # Create request and the document if not existing
     prepareRequests.push (callback) ->
         CozyInstance.defineRequest 'all', all, (err) ->
             callback err

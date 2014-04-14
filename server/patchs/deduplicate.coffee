@@ -63,12 +63,3 @@ module.exports.apply = ->
     format = "DD/MM/YYYY [at] HH:mm:ss"
     console.log "> Next patch apply at #{patchTime.format(format)}"
 
-
-
-
-
-
-
-
-
-

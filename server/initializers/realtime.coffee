@@ -43,7 +43,7 @@ onStatusesUpdate =  (event, id) ->
         else
             # Sends the statuses to the data processor
             retriever = require '../lib/retriever'
-            retriever.init integrator.password
+            retriever.init integrator.token
             retriever.sendStatus integrator.getRegistrationStatuses()
 
             # Also check notifications
